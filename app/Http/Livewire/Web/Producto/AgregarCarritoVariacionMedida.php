@@ -25,17 +25,43 @@ class AgregarCarritoVariacionMedida extends Component
 
     public function updatedMedidaId($value)
     {
-        $dataMedida = Medida::find($value);
-        $this->stockProducto = calculandoProductosDisponibles($this->producto->id, null, $dataMedida->id);
-        $this->opciones["color_id"] = 1;
-        $this->opciones['color'] = "ninguno";
-        $this->opciones['medida_id'] = $dataMedida->id;
-        $this->opciones['medida'] = $dataMedida->nombre;
-        $this->opciones["cantidad"] = calculandoStockProductos($this->producto->id, null, $dataMedida->id);
-
+        $medida = $this->producto->medida_producto->find($value);
+        $this->stockProducto = calculandoProductosDisponibles($this->producto->id, null, $medida->id);
+        $this->opciones['medida_id'] = $medida->id;
+        $this->opciones['medida'] = $medida->nombre;
+        $this->opciones["cantidad"] = calculandoStockProductos($this->producto->id, null, $medida->id);
         $this->reset('cantidadCarrito');
     }
 
+    public function disminuir()
+    {
+        $this->cantidadCarrito = $this->cantidadCarrito - 1;
+    }
+
+    public function aumentar()
+    {
+        $this->cantidadCarrito = $this->cantidadCarrito + 1;
+    }
+
+    public function agregarProducto()
+    {
+        //dump($this->producto->id, $this->medida_id);
+        Cart::instance('shopping')->add(
+            [
+                'id' => $this->producto->id,
+                'name' => $this->producto->nombre,
+                'qty' => $this->cantidadCarrito,
+                'price' => $this->producto->precio_venta,
+                'weight' => 550,
+                'options' => $this->opciones,
+            ]
+        );
+        $this->stockProducto = calculandoProductosDisponibles($this->producto->id, null, $this->medida_id);
+
+        $this->reset('cantidadCarrito');
+
+        $this->emitTo('web.menu.menu-carrito', 'render');
+    }
 
     public function render()
     {

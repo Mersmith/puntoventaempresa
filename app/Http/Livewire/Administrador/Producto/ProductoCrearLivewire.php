@@ -88,6 +88,7 @@ class ProductoCrearLivewire extends Component
     protected $messages = [
         'categoria_id.required' => 'La :attribute es requerido.',
         'subcategoria_id.required' => 'La :attribute es requerido.',
+        'marca_id.required' => 'La :attribute es requerido.',
         'proveedor_id.required' => 'El :attribute es requerido.',
         'nombre.required' => 'El :attribute es requerido.',
         'slug.required' => 'El :attribute es requerido.',

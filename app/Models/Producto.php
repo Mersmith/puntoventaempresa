@@ -81,6 +81,11 @@ class Producto extends Model
         return $this->morphMany(Imagen::class, "imagenable");
     }
 
+    public function fichas()
+    {
+        return $this->morphMany(Ficha::class, "fichaable");
+    }
+
     public function ckeditors()
     {
         return $this->morphMany(Ckeditor::class, "ckeditorable");
@@ -89,5 +94,10 @@ class Producto extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function incrementVisitas()
+    {
+        $this->increment('visitas');
     }
 }

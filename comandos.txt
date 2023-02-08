@@ -553,3 +553,21 @@ git commit -m "first commit"
 git log
 git remote add origin https://github.com/Mersmith/puntoventa.git
 git push origin master
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+PS C:\xampp\htdocs> git clone https://github.com/Mersmith/puntoventa.git
+
+
+->Ficha pdf para producto
+php artisan make:model Ficha -mf
+
+git checkout -b 19_Contador_Visitas_Producto
+git branch
+git status
+
+git add .
+git commit -m "Contador visitas de producto."
+git push origin 19_Contador_Visitas_Producto
+->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -76,7 +76,6 @@
                             @endif
                         </div>
                         <!--SubMenu1-->
-                        {{-- <div x-show="seleccionado == {{ $key }}" x-transition class="submenu_1" --}}
                         <div :style="seleccionado == {{ $key }} && { display: 'block' }" x-transition
                             class="submenu_1" x-on:click.away="seleccionadoSubMenu1 = null">
                             @if (count($menu['subMenu1']))
@@ -87,8 +86,66 @@
                                         <div x-on:click="seleccionarSubMenu1({{ $keySub1 }})"
                                             class="menu_icono menu_icono_submenu"
                                             :style="seleccionadoSubMenu1 == {{ $keySub1 }} && { background: '#f3f4f6' }">
-                                            <a class="submenu_nombre"
-                                                href="{{ route($subMenu1['nombreSubMenu1Url']) }}">{{ $subMenu1['nombreSubMenu1'] }}</a>
+                                            @if (count($subMenu1['subMenu2']))
+                                                <a class="submenu_nombre">{{ $subMenu1['nombreSubMenu1'] }}</a>
+                                                <i class="fa-solid fa-sort-down"></i>
+                                            @else
+                                                <a class="submenu_nombre"
+                                                    href="{{ route($subMenu1['nombreSubMenu1Url']) }}">{{ $subMenu1['nombreSubMenu1'] }}</a>
+                                            @endif
+                                        </div>
+
+                                        <!--SubMenu2-->
+                                        <div :style="seleccionadoSubMenu1 == {{ $keySub1 }} && { display: 'block' }"
+                                            x-transition x-on:click.away="seleccionadoSubMenu2 = null"
+                                            class="submenu_2">
+                                            @if (count($subMenu1['subMenu2']))
+                                                @foreach ($subMenu1['subMenu2'] as $keySub2 => $subMenu2)
+                                                    <div x-data="subMenu3" class="elementos_submenu_2">
+
+                                                        <!--SubMenu2 Nombres-->
+                                                        <div x-on:click="seleccionarSubMenu2({{ $keySub2 }})"
+                                                            class="menu_icono menu_icono_submenu"
+                                                            :style="seleccionadoSubMenu2 == {{ $keySub2 }} &&
+                                                            { background: '#f3f4f6' }">
+
+                                                            @if (count($subMenu2['subMenu3']))
+                                                                <a
+                                                                    class="submenu_nombre">{{ $subMenu2['nombreSubMenu2'] }}</a>
+                                                                <i class="fa-solid fa-sort-down"></i>
+                                                            @else
+                                                                <a class="submenu_nombre"
+                                                                    href="{{ route($subMenu2['nombreSubMenu2Url']) }}">{{ $subMenu2['nombreSubMenu2'] }}</a>
+                                                            @endif
+                                                        </div>
+
+                                                        <!--SubMenu3-->
+                                                        <div :style="seleccionadoSubMenu2 == {{ $keySub2 }} &&
+                                                        { display: 'block' }"
+                                                            x-on:click.away="seleccionadoSubMenu3 = null" x-transition
+                                                            class="submenu_3">
+                                                            @if (count($subMenu2['subMenu3']))
+                                                                @foreach ($subMenu2['subMenu3'] as $keySub3 => $subMenu3)
+                                                                    <div x-data="subMenu4"
+                                                                        class="elementos_submenu_3">
+
+                                                                        <!--SubMenu3 Nombres-->
+                                                                        <div x-on:click="seleccionarSubMenu3({{ $keySub3 }})"
+                                                                            class="menu_icono menu_icono_submenu"
+                                                                            :style="seleccionadoSubMenu3 ==
+                                                                                {{ $keySub3 }} &&
+                                                                                { background: '#f3f4f6' }">
+
+                                                                            <a class="submenu_nombre"
+                                                                                href="{{ route($subMenu3['nombreSubMenu3Url']) }}">{{ $subMenu3['nombreSubMenu3'] }}</a>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach
