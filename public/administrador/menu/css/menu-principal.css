@@ -177,6 +177,24 @@ nav {
     position: relative;
 }
 
+/*SUBMENU 2*/
+.navbar .menu_principal .elementos_menu_principal .submenu_2 {
+    display: none;
+    position: unset;
+    top: 100px;
+    left: 0;
+    background: white;
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    width: 100%;
+}
+
+.navbar .menu_principal .elementos_submenu_2 {
+    position: relative;
+}
+
+
+
 .contenedor_administrador_sidebar {
     display: flex;
     flex-direction: column;

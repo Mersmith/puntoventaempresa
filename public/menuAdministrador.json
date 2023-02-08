@@ -13,49 +13,58 @@
     },
     {
         "id": 2,
-        "nombrePrincipal": "Colores",
-        "nombrePrincipalUrl": "administrador.color.index",
+        "nombrePrincipal": "Proveedores",
+        "nombrePrincipalUrl": "administrador.proveedor.index",
         "subMenu1": []
     },
     {
         "id": 3,
-        "nombrePrincipal": "Categorias",
-        "nombrePrincipalUrl": "administrador.categoria.index",
-        "subMenu1": []
-    },
-    {
-        "id": 4,
-        "nombrePrincipal": "Marca",
-        "nombrePrincipalUrl": "administrador.marca.index",
-        "subMenu1": []
-    },
-    {
-        "id": 5,
-        "nombrePrincipal": "Etiquetas",
-        "nombrePrincipalUrl": "administrador.tag.index",
-        "subMenu1": []
-    },
-    {
-        "id": 6,
-        "nombrePrincipal": "Producto",
-        "nombrePrincipalUrl": "producto",
+        "nombrePrincipal": "Catalogo",
+        "nombrePrincipalUrl": "administrador.color.index",
         "subMenu1": [
             {
                 "id": 1,
-                "nombreSubMenu1": "Todos los productos",
-                "nombreSubMenu1Url": "administrador.producto.index"
+                "nombreSubMenu1": "Marcas",
+                "nombreSubMenu1Url": "administrador.marca.index",
+                "subMenu2": []
             },
             {
                 "id": 2,
-                "nombreSubMenu1": "Crear producto",
-                "nombreSubMenu1Url": "administrador.producto.crear"
+                "nombreSubMenu1": "Colores",
+                "nombreSubMenu1Url": "administrador.color.index",
+                "subMenu2": []
+            },
+            {
+                "id": 3,
+                "nombreSubMenu1": "Etiquetas",
+                "nombreSubMenu1Url": "administrador.tag.index",
+                "subMenu2": []
+            },
+            {
+                "id": 4,
+                "nombreSubMenu1": "Categorias",
+                "nombreSubMenu1Url": "administrador.categoria.index",
+                "subMenu2": []
+            },
+            {
+                "id": 5,
+                "nombreSubMenu1": "Producto",
+                "nombreSubMenu1Url": "administrador.categoria.index",
+                "subMenu2": [
+                    {
+                        "id": 1,
+                        "nombreSubMenu2": "Todos los productos",
+                        "nombreSubMenu2Url": "administrador.producto.index",
+                        "subMenu3": []
+                    },
+                    {
+                        "id": 2,
+                        "nombreSubMenu2": "Crear producto",
+                        "nombreSubMenu2Url": "administrador.producto.crear",
+                        "subMenu3": []
+                    }
+                ]
             }
         ]
-    },
-    {
-        "id": 7,
-        "nombrePrincipal": "Proveedores",
-        "nombrePrincipalUrl": "administrador.proveedor.index",
-        "subMenu1": []
     }
 ]

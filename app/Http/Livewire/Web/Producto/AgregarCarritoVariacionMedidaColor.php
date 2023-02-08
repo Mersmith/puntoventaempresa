@@ -60,7 +60,7 @@ class AgregarCarritoVariacionMedidaColor extends Component
                 'id' => $this->producto->id,
                 'name' => $this->producto->nombre,
                 'qty' => $this->cantidadCarrito,
-                'price' => $this->producto->precio,
+                'price' => $this->producto->precio_venta,
                 'weight' => 550,
                 'options' => $this->opciones,
             ]
@@ -70,8 +70,9 @@ class AgregarCarritoVariacionMedidaColor extends Component
 
         $this->reset('cantidadCarrito');
 
-        $this->emitTo('frontend.menu.menu-carrito', 'render');
+        $this->emitTo('web.menu.menu-carrito', 'render');
     }
+
     public function render()
     {
         return view('livewire.web.producto.agregar-carrito-variacion-medida-color');

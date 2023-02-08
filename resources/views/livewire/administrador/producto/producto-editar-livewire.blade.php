@@ -26,7 +26,7 @@
     <!--CONTENEDOR CONTENIDO-->
     <div class="contenedor_administrador_contenido" x-data>
         <!--CONTENEDOR TAB-->
-        <div class="contenedor_tab" x-data="{ activarTab: 3 }">
+        <div class="contenedor_tab" x-data="{ activarTab: 0 }">
             <!--MENU TAB-->
             <div class="contenedor_tab_menu contenedor_panel_producto_admin">
                 <label @click="activarTab = 0" class="menu_tab" :class="{ 'activo': activarTab === 0 }">Info</label>

@@ -33,17 +33,13 @@ Route::get('prueba-administrador', function () {
 
 Route::get('perfil', PerfilLivewire::class)->name('perfil');
 
-Route::get('categorias', CategoriaLivewire::class)->name('categoria.index');
-
-Route::get('subcategoria/{categoria}', SubcategoriaLivewire::class)->name('subcategoria.index');
-
-Route::get('colores', ColorLivewire::class)->name('color.index');
+Route::get('proveedores', ProveedorLivewire::class)->name('proveedor.index');
 
 Route::get('marcas', MarcaLivewire::class)->name('marca.index');
-
+Route::get('colores', ColorLivewire::class)->name('color.index');
 Route::get('tags', TagLivewire::class)->name('tag.index');
-
-Route::get('proveedores', ProveedorLivewire::class)->name('proveedor.index');
+Route::get('categorias', CategoriaLivewire::class)->name('categoria.index');
+Route::get('subcategoria/{categoria}', SubcategoriaLivewire::class)->name('subcategoria.index');
 
 Route::get('productos', ProductoTodoLivewire::class)->name('producto.index');
 Route::get('producto/crear', ProductoCrearLivewire::class)->name('producto.crear');

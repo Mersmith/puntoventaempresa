@@ -21,7 +21,6 @@
 
         <!--FORMULARIO-->
         <form wire:submit.prevent="crearProducto" x-data class="formulario">
-
             <!--ESTADO-->
             <div class="contenedor_panel_producto_admin">
                 <div class="contenedor_2_elementos">
@@ -29,11 +28,11 @@
                         <p>Estado del producto: <span class="campo_opcional">(Opcional)</span> </p>
                         <div>
                             <label>
-                                <input type="radio" value="0" name="estado"  wire:model.defer="estado">
+                                <input type="radio" value="0" name="estado" wire:model="estado">
                                 Desactivado
                             </label>
                             <label>
-                                <input type="radio" value="1" name="estado"  wire:model.defer="estado">
+                                <input type="radio" value="1" name="estado" wire:model="estado">
                                 Activado
                             </label>
                         </div>
@@ -226,7 +225,8 @@
                 <!--INFORMACIÓN-->
                 <div class="contenedor_1_elementos_100" wire:ignore>
                     <div class="contenedor_elemento_item">
-                        <p class="estilo_nombre_input">Información: <span class="campo_obligatorio">(Obligatorio)</span>
+                        <p class="estilo_nombre_input">Información: <span
+                                class="campo_obligatorio">(Obligatorio)</span>
                         </p>
                         <textarea rows="3"wire:model="informacion" x-data x-init="ClassicEditor.create($refs.miEditor, {
                                 toolbar: ['bold', 'italic', 'link', 'undo', 'redo', 'bulletedList', 'uploadImage'],
@@ -403,14 +403,15 @@
             </div>
 
             <!--Imagenes-->
-            <div class="contenedor_panel_producto_admin"  id="sortableimagenes">
+            <div class="contenedor_panel_producto_admin" id="sortableimagenes">
                 @if ($imagenes)
                     <div class="contenedor_1_elementos_imagen">
                         <div class="contenedor_imagenes_subidas_dropzone">
                             @foreach ($imagenes as $key => $imagen)
                                 <div wire:key="{{ $loop->index }}" data-id="{{ $key }}">
                                     <img class="handle2 cursor-grab" src="{{ $imagen->temporaryUrl() }}">
-                                    <span class="imagen_dropzone_eliminar" wire:click="eliminarImagen({{ $loop->index }})">
+                                    <span class="imagen_dropzone_eliminar"
+                                        wire:click="eliminarImagen({{ $loop->index }})">
                                         <i class="fa-solid fa-xmark"style="color: white;"></i>
                                     </span>
                                 </div>
@@ -419,7 +420,7 @@
                     </div>
                 @endif
             </div>
-            
+
             <!--ENVIAR-->
             <div class="contenedor_1_elementos">
                 <input type="submit" value="Crear Producto">

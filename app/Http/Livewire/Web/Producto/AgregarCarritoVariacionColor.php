@@ -58,7 +58,7 @@ class AgregarCarritoVariacionColor extends Component
 
         $this->reset('cantidadCarrito');
 
-        $this->emitTo('frontend.menu.menu-carrito', 'render');
+        $this->emitTo('web.menu.menu-carrito', 'render');
     }
 
     public function render()
