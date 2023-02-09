@@ -163,9 +163,9 @@ class PerfilLivewire extends Component
             ]);
         }
 
-        $this->emit('mensajeActualizado', "Editado.");
+        $this->emitTo('web.menu.menu-principal', 'render');
 
-        //return redirect()->route('administrador.cliente.index');
+        $this->emit('mensajeActualizado', "Editado.");
     }
 
     public function render()

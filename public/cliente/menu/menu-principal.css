@@ -1,0 +1,31 @@
+/*CONTENEDOR MENU PRINCIPAL*/
+.item_menu_cliente{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1.5px solid #ccc;
+}
+
+.item_menu_cliente hr {
+    border: 0;
+    border-bottom: 1.5px solid #ccc;
+    width: 90%;
+}
+
+.item_menu_cliente a {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+    cursor: pointer;
+    color: #666;
+    padding: 10px 0px;
+}
+
+.item_menu_cliente a:hover {
+    color: #ffa03d;
+}
+
+.item_menu_cliente i {
+    margin-right: 5px;
+    color: #ffa03d;
+}

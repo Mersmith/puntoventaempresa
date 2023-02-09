@@ -8,23 +8,26 @@
 
     <title>@yield('tituloPagina')</title>
 
-    <!-- Scripts -->
+    <!--SCRIPTS-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Styles -->
+    <!--STYLES-->
     @livewireStyles
-    @include('layouts.administrador.componentes.css')
+    @include('layouts.cliente.componentes.css')
 </head>
 
 <body class="font-sans antialiased">
-    {{-- Sirve para crear los flash.banner --}}
+    <!--FLASH BANNER-->
     <x-jet-banner />
 
     <div class="min-h-screen">
 
-        <!-- Contenido de páginas-->
-        <main class="contenedor_layout_administrador">
-            <!--Mensaje alerta-->
+        <!--MENU PRINCIPAL-->
+        @livewire('web.menu.menu-principal')
+
+        <!--MAIN PAGINA-->
+        <main class="contenedor_layout_cliente">
+            <!--MENSAJES ALERTA-->
             @if (session('crear'))
                 <div id="mensaje_alerta_crear" class="mensaje_alerta">
                     <p>{{ session('crear') }}</p>
@@ -58,7 +61,6 @@
                     </script>
                 </div>
             @endif
-
             @if (session('error'))
                 <div class="mensaje_alerta">
                     <p>{{ session('error') }}</p>
@@ -70,11 +72,26 @@
                     </script>
                 </div>
             @endif
-            {{ $slot }}
+            <!--CONTENIDO PAGINA-->
+            <div class="contenedor_centrar_pagina">
+                <div class="grid_layout_cliente">
+                    <div class="contenedor_cliente_menu">
+                        <!--MENU PRINCIPAL CLIENTE-->
+                        @include('cliente.menu.menu-principal')
+                    </div>
+                    <div class="contenedor_cliente_paginas">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </div>
         </main>
+
+        <!--PIE PAGINA-->
+        @include('layouts.web.componentes.pie-pagina')
+
     </div>
 
-    @include('layouts.administrador.componentes.js')
+    @include('layouts.cliente.componentes.js')
     @stack('modals')
     @livewireScripts
     @stack('script')
