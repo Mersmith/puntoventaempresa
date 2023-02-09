@@ -230,7 +230,7 @@ git push origin 9_Crud_Compra
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-->PDF 
+->PDF
 composer require barryvdh/laravel-dompdf
 
 php artisan make:controller Administrador/CompraController
@@ -478,7 +478,7 @@ php artisan make:livewire Web/Producto/AgregarCarritoVariacionMedida
 php artisan make:livewire Web/Producto/AgregarCarritoVariacionMedidaColor
 
 ->Crear la carpeta Helpers y el archivo con sus funciones
-->En composer.json 
+->En composer.json
    "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -570,4 +570,34 @@ git add .
 git commit -m "Contador visitas de producto."
 git push origin 19_Contador_Visitas_Producto
 ->Click en boton Merge pull request
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:model Departamento -m
+php artisan make:model Provincia -m
+php artisan make:model Distrito -m
+php artisan make:model Direccion -msf
+
+
+->Copiar de ubigeo.sql las 24 departamentos, 194 provincias y 1830 distritos
+
+php artisan make:livewire Cliente/Direccion/DireccionTodoLivewire
+php artisan make:livewire Cliente/Direccion/DireccionCrearLivewire
+php artisan make:livewire Cliente/Direccion/DireccionEditarLivewire
+
+php artisan make:controller Cliente/PerfilController
+
+php artisan make:livewire Cliente/Favoritos/FavoritosTodoLivewire
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 20_Estilos_Cliente
+git branch
+git status
+
+git add .
+git commit -m "20_Estilos_Cliente"
+git push origin 20_Estilos_Cliente
+->Click en boton Merge pull request
+
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

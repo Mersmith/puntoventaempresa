@@ -2,141 +2,220 @@
     <!--SEO-->
     @section('tituloPagina', 'PERFIL')
 
-    <!--TITULO-->
-    <h1>PERFIL</h1>
+    <!--CONTENEDOR PAGINA PERFIL-->
+    <div class="contenedor_pagina_perfil">
 
-    <!--FORMULARIO-->
-    <div x-data>
-        <!--EMAIL-->
-        <div>
-            <p>Email: </p>
-            <input type="email" wire:model="email" disabled>
-            @error('email')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
+        <!--TITULO-->
+        <h2 class="cliente_paginas_titulo">MIS DATOS PERSONALES</h2>
 
-        <!--PASSWORD-->
-        <div>
-            <p>Contraseña actual: </p>
-            <input type="password" wire:model="password" disabled>
-            @error('password')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
+        <!--FORMULARIO DATOS-->
+        <div x-data class="formulario">
 
-        <!--NUEVO PASSWORD-->
-        <div>
-            <p>Nueva contraseña: </p>
-            <input type="password" wire:model="editarPassword">
-            @error('editarPassword')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--NOMBRE-->
-        <div>
-            <p>Nombre: </p>
-            <input type="text" wire:model="nombre">
-            @error('nombre')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--APELLIDO-->
-        <div>
-            <p>Apellido: </p>
-            <input type="text" wire:model="apellido">
-            @error('apellido')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--DNI-->
-        <div>
-            <p>DNI: </p>
-            <input type="number" wire:model="dni">
-            @error('dni')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--RUC-->
-        <div>
-            <p>RUC: </p>
-            <input type="number" wire:model="ruc">
-            @error('ruc')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--CELULAR-->
-        <div>
-            <p>Celular: </p>
-            <input type="tel" wire:model="celular">
-            @error('celular')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--DIRECCIÓN-->
-        <div>
-            <p>Dirección: </p>
-            <input type="text" wire:model="direccion">
-            @error('direccion')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <!--PUNTOS-->
-        <div>
-            <p>Puntos: </p>
-            <input type="number" wire:model="puntos" disabled>
-            @error('puntos')
-                <span>{{ $message }}</span>
-            @enderror
-        </div>
-        <br>
-
-        <!--IMAGEN-->
-        <div>
-            <p>Imagen: </p>
-            <div style="width: 100px; height: 100px;">
-                @if ($editarImagen)
-                    <img style="width: 100px; height: 100px;" src="{{ $editarImagen->temporaryUrl() }}">
-                @elseif($imagen)
-                    <img style="width: 100px; height: 100px;" src="{{ Storage::url($cliente->imagen->imagen_ruta) }}">
-                    <div wire:click="$set('imagen', null)">
-                        Eliminar <i class="fa-solid fa-trash"></i>
-                    </div>
-                @else
-                    <img style="width: 100px; height: 100px;" src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
-                @endif
-                <label for="imagen">
-                    <div>
-                        Editar <i class="fa-solid fa-camera"></i>
-                    </div>
-                </label>
-                <div wire:click="$set('editarImagen', null)">
-                    Cancelar <i class="fa-solid fa-trash"></i>
+            <!--EMAIL-->
+            <div class="contenedor_1_elementos_100">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Email:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="email" wire:model="email" disabled>
+                    @error('email')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
-            <input type="file" wire:model="editarImagen" style="display: none" id="imagen">
-            @error('editarImagen')
-                <span>{{ $message }}</span>
-            @enderror
+
+            <!--NOMBRE Y APELLIDO-->
+            <div class="contenedor_2_elementos">
+                <!--NOMBRE-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Nombre:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="text" wire:model="nombre">
+                    @error('nombre')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!--APELLIDO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Apellido:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="text" wire:model="apellido">
+                    @error('apellido')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--DNI Y RUC-->
+            <div class="contenedor_2_elementos">
+                <!--DNI-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">DNI:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="number" wire:model="dni">
+                    @error('dni')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!--RUC-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">RUC:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="number" wire:model="ruc">
+                    @error('ruc')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--CELULAR Y PUNTOS-->
+            <div class="contenedor_2_elementos">
+                <!--CELULAR-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Celular:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="tel" wire:model="celular">
+                    @error('celular')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!--PUNTOS-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Puntos:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="number" wire:model="puntos" disabled>
+                    @error('puntos')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--DIRECCIÓN-->
+            <div class="contenedor_1_elementos_100">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Dirección:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <textarea rows="2" wire:model="direccion"></textarea>
+                    @error('direccion')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--ENVIAR-->
+            <div class="contenedor_1_elementos">
+                <button wire:loading.attr="disabled" wire:target="editarCliente" wire:click="editarCliente">
+                    Actualizar datos
+                </button>
+            </div>
         </div>
-        <br>
-        <br>
-        <br>
+
         <br>
 
-        <!--ENVIAR-->
-        <div>
-            <button wire:loading.attr="disabled" wire:target="editarCliente" wire:click="editarCliente">
-                Actualizar cliente
-            </button>
+        <!--TITULO-->
+        <h2 class="cliente_paginas_titulo">CAMBIAR FOTO</h2>
+
+        <!--FORMULARIO FOTO-->
+        <div x-data class="formulario">
+
+            <!--IMAGEN-->
+            <div class="contenedor_1_elementos_100">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Imagen:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <div class="contenedor_subir_imagen_sola contenedor_subir_imagen_sola_estilo_2">
+                        @if ($editarImagen)
+                            <img src="{{ $editarImagen->temporaryUrl() }}">
+                            <span class="boton_imagen_eliminar" wire:click="$set('editarImagen', null)">
+                                <i class="fa-solid fa-xmark"></i>
+                            </span>
+                        @elseif($imagen)
+                            <img src="{{ Storage::url($cliente->imagen->imagen_ruta) }}">
+                            <span class="boton_imagen_borrar" wire:click="$set('imagen', null)">
+                                <i class="fa-solid fa-trash"></i>
+                            </span>
+                        @else
+                            <img src="{{ asset('imagenes/perfil/sin_foto_perfil.png') }}">
+                        @endif
+
+                        <div class="opcion_cambiar_imagen">
+                            <label for="imagen">
+                                <div style="cursor: pointer;">
+                                    Editar <i class="fa-solid fa-camera"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="file" wire:model="editarImagen" style="display: none" id="imagen">
+                    @error('editarImagen')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--ENVIAR-->
+            <div class="contenedor_1_elementos">
+                <button class="button_estilo_2" wire:loading.attr="disabled" wire:target="editarCliente"
+                    wire:click="editarCliente">
+                    Actualizar foto
+                </button>
+            </div>
         </div>
+
+        <br>
+
+        <!--TITULO-->
+        <h2 class="cliente_paginas_titulo">CAMBIAR CONTRASEÑA</h2>
+
+        <!--FORMULARIO CONTRASEÑA-->
+        <div x-data class="formulario">
+
+            <!--PASSWORD-->
+            <div class="contenedor_1_elementos_100">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Contraseña actual:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="password" wire:model="password" disabled>
+                    @error('password')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--NUEVO PASSWORD-->
+            <div class="contenedor_1_elementos_100">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Nueva contraseña:
+                        <!--<span class="campo_opcional">(Opcional)</span>-->
+                    </p>
+                    <input type="password" wire:model="editarPassword">
+                    @error('editarPassword')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!--ENVIAR-->
+            <div class="contenedor_1_elementos">
+                <button class="button_estilo_2" wire:loading.attr="disabled" wire:target="editarCliente"
+                    wire:click="editarCliente">
+                    Cambiar contraseña
+                </button>
+            </div>
+        </div>
+
     </div>
 </div>
 

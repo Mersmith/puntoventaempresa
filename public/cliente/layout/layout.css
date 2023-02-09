@@ -1,0 +1,78 @@
+/*CONTENEDOR LAYOUT CLIENTE*/
+.contenedor_layout_cliente {
+    padding: 20px;
+}
+
+/*CONTENEDOR CENTRAR PAGINA CLIENTE*/
+.contenedor_layout_cliente .contenedor_centrar_pagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*GRID PAGINA CLIENTE*/
+.contenedor_layout_cliente .grid_layout_cliente {
+    margin-top: 40px;
+    width: 70%;
+    display: grid;
+    grid-template-areas: "contenedor_cliente_menu  contenedor_cliente_paginas";
+    grid-template-columns: 30% 70%;
+    grid-gap: 50px;
+}
+
+/*GRID ITEM MENU*/
+.contenedor_layout_cliente .contenedor_cliente_menu {
+    grid-area: contenedor_cliente_menu;
+}
+
+/*GRID ITEM PAGINA*/
+.contenedor_layout_cliente .contenedor_cliente_paginas {
+    grid-area: contenedor_cliente_paginas;
+    width: 100%;
+}
+
+/*TITULO PAGINA CLIENTE*/
+.contenedor_layout_cliente .contenedor_cliente_paginas .cliente_paginas_titulo {
+    color: #333;
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    font-weight: 700;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    padding-bottom: 12px;
+}
+
+.contenedor_botones_cliente a,
+.contenedor_botones_cliente button {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: #333;
+}
+
+.contenedor_botones_cliente a:hover,
+.contenedor_botones_cliente button:hover {
+    color: white;
+    background-color: #333;
+}
+
+@media (max-width: 1200px) {
+    .contenedor_layout_cliente .grid_layout_cliente {
+        width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .contenedor_layout_cliente .grid_layout_cliente {
+        width: 100%;
+        grid-template-areas:
+            "contenedor_cliente_paginas";
+        grid-template-columns: 1fr;
+        grid-gap: 0px;
+        margin-top: 0px;
+    }
+
+    .contenedor_layout_cliente .contenedor_cliente_menu {
+        display: none;
+    }
+}

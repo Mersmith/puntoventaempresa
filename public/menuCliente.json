@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nombrePrincipal": "Datos personales",
+        "nombrePrincipalUrl": "cliente.perfil",
+        "iconoPrincipal": "fa-solid fa-user-pen"
+    },
+    {
+        "id": 2,
+        "nombrePrincipal": "Direcciones",
+        "nombrePrincipalUrl": "cliente.direccion.index",
+        "iconoPrincipal": "fa-solid fa-map-location-dot"
+    },
+    {
+        "id": 3,
+        "nombrePrincipal": "CRD Puntos",
+        "nombrePrincipalUrl": "cliente.puntos.index",
+        "iconoPrincipal": "fa-solid fa-arrows-to-circle"
+    },
+    {
+        "id": 4,
+        "nombrePrincipal": "Favoritos",
+        "nombrePrincipalUrl": "cliente.favoritos.index",
+        "iconoPrincipal": "fas fa-truck"
+    }
+]

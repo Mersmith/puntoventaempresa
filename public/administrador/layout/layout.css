@@ -3,7 +3,7 @@
     background: #f6fafc;
 }
 
-.contenedor_administrador_contenido{
+.contenedor_administrador_contenido {
     padding: 20px;
 }
 
@@ -16,26 +16,8 @@
     box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 }
 
-/*ESTILOS NO HAY ELEMENTOS EN UNA LISTA*/
-.contenedor_no_existe_elementos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #aaaaaa;
-    font-size: 24px;
-}
-
-.contenedor_no_existe_elementos_izquierda {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    color: #aaaaaa;
-    font-size: 24px;
-}
-
-.contenedor_boton_scroll_top{
+/*ESTILOS  BOTON SCROLL TOP*/
+.contenedor_boton_scroll_top {
     position: fixed;
     background-color: #f18f26;
     width: 30px;
@@ -49,7 +31,7 @@
     color: white;
 }
 
-.contenedor_boton_scroll_abajo{
+.contenedor_boton_scroll_abajo {
     position: fixed;
     background-color: #009EF7;
     width: 30px;

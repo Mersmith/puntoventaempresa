@@ -31,4 +31,22 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'mercadopago' => [
+        'key' => env('MP_PUBLIC_KEY'),
+        'token' => env('MP_ACCESS_TOKEN'),
+    ],
+
+    'paypal' => [
+        'cliente' => env('PP_CLIENTE_ID'),
+        'secret' => env('PP_SECRET'),
+    ],
+
+    'gmail' => [
+        'email' => env('MAIL_FROM_ADDRESS'),
+    ],
+
+    'crd' => [
+        'puntos' => env('PUNTOS'),
+    ]
+
 ];
