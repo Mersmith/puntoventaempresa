@@ -3,6 +3,7 @@
 use App\Http\Controllers\Administrador\ProductoController as AdministradorProductoController;
 use App\Http\Controllers\Web\InicioController;
 use App\Http\Controllers\Web\ProductoController as WebProductoController;
+use App\Http\Livewire\Web\Carrito\CarritoCompras;
 use App\Http\Livewire\Web\Tienda\TiendaPagina;
 use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -18,18 +19,24 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 |
 */
 
-Route::get('/', InicioController::class)->name('inicio');
-
 Route::get('prueba-web', function () {
     return "Web";
 });
+
+Route::get('/', InicioController::class)->name('inicio');
 
 Route::get('producto/{producto}', [WebProductoController::class, 'mostrar'])->name('producto.index');
 Route::get('producto-redirigir/{id}', [WebProductoController::class, 'redirigirProductoId'])->name('producto.redirigir.id');
 
 Route::get('producto/{producto}/qr', [AdministradorProductoController::class, 'redirigirQr'])->name('producto.redirigir.qr');
 
-Route::get('tienda', TiendaPagina::class)->name('tienda');
+Route::get('tienda', TiendaPagina::class)->name('tienda.index');
+
+Route::middleware(['auth.login'])->group(
+    function () {
+        Route::get('carrito-compras', CarritoCompras::class)->name('carrito.compras.index');
+    }
+);
 
 Route::get('carrito-eliminar', function () {
     Cart::instance('shopping')->destroy();

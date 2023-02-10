@@ -40,7 +40,7 @@
                     <div class="contenedor_ir_carrito">
                         <p><strong>Total: </strong> ${{ Cart::instance('shopping')->subtotal(2, '.', ',') }}
                         </p>
-                        <a href="#">
+                        <a href="{{ route('carrito.compras.index') }}">
                             Ir al carrito
                         </a>
                     </div>

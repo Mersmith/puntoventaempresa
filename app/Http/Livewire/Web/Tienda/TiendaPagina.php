@@ -25,7 +25,7 @@ class TiendaPagina extends Component
     public function mount()
     {
         $this->categorias = Categoria::all();
-        //$this->categoria = $this->categorias->first()->id;        
+        //$this->categoria = $this->categorias->first()->id;
     }
 
     public function updatingBuscarProducto()
@@ -50,7 +50,7 @@ class TiendaPagina extends Component
         $this->resetPage();
     }
 
-    //Page campo de WithPagination 
+    //Page campo de WithPagination
     public function limpiarFiltro()
     {
         $this->reset(['categoria', 'subcategoria', 'marca', 'page', 'search', 'buscarProducto']);
@@ -96,7 +96,7 @@ class TiendaPagina extends Component
             });
         }
 
-        $productos = $productosQuery->whereBetween('precio_venta', [$this->minimo, $this->maximo])->orderBy('created_at', 'desc')->paginate(10);
+        $productos = $productosQuery->whereBetween('precio_venta', [$this->minimo, $this->maximo])->orderBy('created_at', 'desc')->where('estado', 1)->paginate(20);
 
 
         return view('livewire.web.tienda.tienda-pagina', compact('productos'))->layout('layouts.web.index');

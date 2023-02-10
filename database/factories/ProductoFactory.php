@@ -49,7 +49,7 @@ class ProductoFactory extends Factory
             'link_video' => "https://www.youtube.com/embed/iQ7iu-zkh0o",
             'incluye_igv' => false,
             'tiene_detalle' => false,
-            'estado' => 1,
+            'estado' => $this->faker->randomElement([0, 1]),
             'visitas' => $this->faker->randomNumber(),
         ];
     }

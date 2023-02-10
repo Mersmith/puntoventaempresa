@@ -14,8 +14,20 @@
         @include('web.inicio.slider-categoria')
     @endif
 
-    <!--SLIDER PRODUCTO 1-->
+    <!--SLIDER PRODUCTO 1 FECHA DE CREACIÓN-->
     @livewire('web.inicio.slider-producto1')
+
+    <!--SLIDER PRODUCTO 2 CATEGORIA-->
+    @livewire('web.inicio.slider-producto2')
+
+    <!--SLIDER PRODUCTO 3 SUBCATEGORIA-->
+    @livewire('web.inicio.slider-producto3')
+
+    <!--SLIDER PRODUCTO 4 PRECIO-->
+    @livewire('web.inicio.slider-producto4')
+
+    <!--SLIDER PRODUCTO 5 BUSCADOS-->
+    @livewire('web.inicio.slider-producto5')
 
     <!--BANNER PROMOCIONAL 1-->
     @include('web.inicio.banner-promocional')

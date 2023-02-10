@@ -31,14 +31,15 @@
                                 @foreach ($imagesOrdenadas as $key2 => $imagen)
                                     <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
                                         x-show="current == {{ $key2 }}">
-                                        
                                 @endforeach
 
+                                <!--CONTENEDOR FAVORITO-->
+                                @livewire('web.inicio.agregar-favorito-producto', ['producto' => $producto])
 
                                 <div @click="
-                            if(current > 0){ 
+                            if(current > 0){
                                 current = current - 1;
-                            }else{ 
+                            }else{
                                 current = {{ $cantidadImagenes - 1 }};
                             }
                             "
@@ -46,9 +47,9 @@
                                     <span><i class="fa-solid fa-angle-left"></i></span>
                                 </div>
                                 <div @click="
-                            if(current < total-1){ 
+                            if(current < total-1){
                                 current = current + 1;
-                            }else{ 
+                            }else{
                                 current = 0;
                             }
                             "
@@ -69,9 +70,11 @@
                     @else
                         <div class="contenedor_imagen_producto_principal">
                             <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
-                            <span class="agregar_favorito"> <i class="fa-solid fa-heart"
-                                    style="color: #ffa03d; cursor: pointer;"></i>
-                            </span>
+                            <div>
+                                <span class="agregar_favorito"> <i class="fa-solid fa-heart"
+                                        style="color: #ffa03d; cursor: pointer;"></i>
+                                </span>
+                            </div>
                         </div>
                     @endif
                 </div>

@@ -1,3 +1,32 @@
+.contenedor_principal_slider_producto {
+    margin: 20px 0px;
+}
+
+.titulo_slider_producto {
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.titulo_slider_producto a {
+    padding-left: 6px;
+    text-transform: initial;
+    white-space: nowrap;
+    color: #f50;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    text-decoration: underline;
+}
+
+.titulo_slider_producto a:hover {
+    color: rgb(223, 75, 1);
+}
+
+
 /*SLIDER PRINCIPAL INICIO*/
 .contenedor_slider_producto {
     width: 100%;
@@ -27,6 +56,7 @@
     object-fit: cover;
     margin: auto;
 }
+
 /*SLIDER OFERTA*/
 .slider_producto_item .slider_producto_oferta {
     width: 85px;
@@ -66,6 +96,7 @@
 .slider_producto_item .slider_producto_liston:before {
     left: 0;
 }
+
 .slider_producto_item .slider_producto_liston:after {
     right: 0;
 }

@@ -1,11 +1,11 @@
 <div wire:init="loadProductos" class="contenedor_principal_slider_producto">
     @if (count($productos))
         <!--TITULO-->
-        <h2 class="titulo_slider_producto">Novedades<a href="#">Ver más</a></h2>
+        <h2 class="titulo_slider_producto">Más buscados<a href="#">Ver más</a></h2>
 
         <!--CONTENEDOR SLIDER-->
         <div class="glider-contain contenedor_slider_producto">
-            <div class="gliderSliderProducto-{{ $slider1 }}">
+            <div class="gliderSliderProducto-{{ $slider5 }}">
                 @foreach ($productos as $key => $producto)
                     <div class="slider_producto_item" wire:key="producto-{{ $producto->id }}">
                         <!--CONTENEDOR IMAGEN-->

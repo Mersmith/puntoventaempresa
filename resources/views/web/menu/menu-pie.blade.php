@@ -1,6 +1,6 @@
 <div class="contenedor_navbar_pie">
     <div class="navbar_pie_tienda">
-        <a href="{{ route('tienda') }}">
+        <a href="{{ route('tienda.index') }}">
             <i class="fa-solid fa-store" style="color: #666666;"></i>
             TIENDA
         </a>

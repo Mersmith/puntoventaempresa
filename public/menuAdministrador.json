@@ -66,5 +66,11 @@
                 ]
             }
         ]
+    },
+    {
+        "id": 4,
+        "nombrePrincipal": "Cupones",
+        "nombrePrincipalUrl": "administrador.cupon.index",
+        "subMenu1": []
     }
 ]
