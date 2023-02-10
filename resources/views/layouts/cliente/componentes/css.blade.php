@@ -5,7 +5,7 @@
 <!--FORMULARIO-->
 <link rel="stylesheet" href="{{ asset('generales/formulario.css') }}">
 
-<!--FORMULARIO-->
+<!--ELEMENTOS-->
 <link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
 
 <!----------------------WEB---------------------->

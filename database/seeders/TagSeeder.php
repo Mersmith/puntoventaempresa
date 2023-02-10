@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Color;
+use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ColorSeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ColorSeeder extends Seeder
      * @return void
      */
     public function run()
-    {        
-        Color::factory(5)->create();
+    {
+        Tag::factory(5)->create();
     }
 }

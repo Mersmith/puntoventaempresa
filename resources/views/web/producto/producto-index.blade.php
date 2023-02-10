@@ -31,6 +31,7 @@
                                 @foreach ($imagesOrdenadas as $key2 => $imagen)
                                     <img src="{{ Storage::url($imagen->imagen_ruta) }}" alt=""
                                         x-show="current == {{ $key2 }}">
+                                        
                                 @endforeach
 
 
