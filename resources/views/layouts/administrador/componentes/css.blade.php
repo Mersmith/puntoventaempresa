@@ -8,7 +8,8 @@
 <!-- Layout -->
 <link rel="stylesheet" href="{{ asset('administrador/layout/layout.css') }}">
 <link rel="stylesheet" href="{{ asset('administrador/layout/cabecera.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/formulario.css') }}">
+<link rel="stylesheet" href="{{ asset('generales/formulario.css') }}">
+<link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
 <link rel="stylesheet" href="{{ asset('administrador/layout/tabla.css') }}">
 <link rel="stylesheet" href="{{ asset('administrador/layout/tab.css') }}">
 <link rel="stylesheet" href="{{ asset('administrador/layout/dropzone.css') }}">

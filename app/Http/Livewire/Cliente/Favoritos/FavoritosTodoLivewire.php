@@ -7,12 +7,14 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class FavoritosTodoLivewire extends Component
 {
-    public function eliminarFavorito($rowId)
-    {
-        dump($rowId);
-        /*Cart::instance('wishlist')->remove($rowId);
+    protected $listeners = ['render'];
 
-        $this->emitTo('web.menu.menu-favorito', 'render');*/
+    public function eliminarFavorito($rowId)
+    {      
+        Cart::instance('wishlist')->remove($rowId);
+
+        $this->emitTo('web.menu.menu-favorito', 'render');
+        $this->emitTo('cliente.favoritos.favoritos-todo-livewire', 'render');
     }
 
     public function render()

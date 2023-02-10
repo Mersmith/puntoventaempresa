@@ -601,3 +601,35 @@ git push origin 20_Estilos_Cliente
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:factory ProveedorFactory
+php artisan make:seeder ProveedorSeeder
+
+php artisan make:factory MarcaFactory
+php artisan make:seeder MarcaSeeder
+
+php artisan make:factory ColorFactory
+php artisan make:seeder ColorSeeder
+
+php artisan make:factory TagFactory
+php artisan make:seeder TagSeeder
+
+php artisan make:seeder CategoriaSeeder
+
+php artisan make:factory ProductoFactory
+php artisan make:seeder ProductoSeeder
+
+php artisan make:seeder SubcategoriaSeeder
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 21_Seeder
+git branch
+git status
+
+git add .
+git commit -m "21_Seeder"
+git push origin 21_Seeder
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

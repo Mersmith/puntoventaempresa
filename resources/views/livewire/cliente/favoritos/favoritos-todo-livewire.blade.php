@@ -15,18 +15,21 @@
                     <div class="slider_producto_item">
                         <!--CONTENEDOR IMAGEN-->
                         <div class="slider_producto_imagen">
-                            <a href="{{ route('producto.index', $item->id) }}">
+                            <a href="{{ route('producto.redirigir.id', $item->id) }}">
                                 @if ($item->options->imagen)
                                     <img src="{{ $item->options->imagen }}" alt="" />
                                 @else
                                     <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
                                 @endif
                             </a>
-
                             <!--CONTENEDOR FAVORITO-->
                             <div>
-                                <span wire:click="eliminarFavorito({{ $item->rowId }})" class="agregar_favorito"> <i
-                                        class="fa-solid fa-heart" style="color: blue; cursor: pointer;"></i></span>
+                                <span class="agregar_favorito">
+                                    <i wire:click="eliminarFavorito('{{ $item->rowId }}')"
+                                        wire:loading.class="text-red-600 opacity-25"
+                                        wire:target="eliminarFavorito('{{ $item->rowId }}')" class="fa-solid fa-heart"
+                                        style="color: blue; cursor: pointer;"></i>
+                                </span>
                             </div>
                         </div>
 

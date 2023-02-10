@@ -17,14 +17,15 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', InicioController::class)->name('inicio');
 
 Route::get('prueba-web', function () {
     return "Web";
 });
 
-
 Route::get('producto/{producto}', [WebProductoController::class, 'mostrar'])->name('producto.index');
+Route::get('producto-redirigir/{id}', [WebProductoController::class, 'redirigirProductoId'])->name('producto.redirigir.id');
 
 Route::get('producto/{producto}/qr', [AdministradorProductoController::class, 'redirigirQr'])->name('producto.redirigir.qr');
 

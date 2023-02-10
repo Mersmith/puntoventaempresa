@@ -21,4 +21,11 @@ class ProductoController extends Controller
 
         return view('web.producto.producto-index', compact('producto'));
     }
+
+    public function redirigirProductoId($productoId)
+    {
+        $producto = Producto::find($productoId);
+
+        return redirect()->route('producto.index', $producto);
+    }
 }
