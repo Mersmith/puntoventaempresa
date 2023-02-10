@@ -11,6 +11,9 @@ use App\Http\Livewire\Administrador\Color\ColorLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraCrearLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraEditarLivewire;
 use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
+use App\Http\Livewire\Administrador\Cupon\CuponCrearLivewire;
+use App\Http\Livewire\Administrador\Cupon\CuponEditarLivewire;
+use App\Http\Livewire\Administrador\Cupon\CuponTodoLivewire;
 use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
 use App\Http\Livewire\Administrador\Estadistica\EstadisticaLivewire;
 use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
@@ -66,3 +69,7 @@ Route::get('reportes/fechas', CompraFechaLivewire::class)->name('reporte.fecha')
 Route::get('estadistica', EstadisticaLivewire::class)->name('estadistica.index');
 
 Route::get('slider', SliderLivewire::class)->name('slider.index');
+
+Route::get('cupones', CuponTodoLivewire::class)->name('cupon.index');
+Route::get('cupones/crear', CuponCrearLivewire::class)->name('cupon.crear');
+Route::get('cupones/{cupon}/editar', CuponEditarLivewire::class)->name('cupon.editar');

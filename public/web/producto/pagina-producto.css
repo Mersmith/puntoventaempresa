@@ -61,6 +61,13 @@
     width: 100%;
 }
 
+.contenedor_imagen_producto_principal .agregar_favorito {
+    position: absolute;
+    top: 0px;
+    font-size: 20px;
+    right: 5px;
+}
+
 .contenedor_imagen_producto_principal .contenedor_imagen_pie_controles {
     position: absolute;
     width: 30px;

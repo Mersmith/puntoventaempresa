@@ -24,7 +24,7 @@ class MenuBuscador extends Component
     {
         if ($this->buscar) {
             $productosBuscador = Producto::where('nombre', 'LIKE', '%' . $this->buscar . '%')
-                ->where('estado', 2)
+                ->where('estado', 1)
                 ->take(8)
                 ->get();
         } else {

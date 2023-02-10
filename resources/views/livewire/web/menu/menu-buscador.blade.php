@@ -9,8 +9,14 @@
                 <div class="px-4  py-3 space-y-1">
                     @forelse ($productosBuscador as $producto)
                         <a href="{{ route('producto.index', $producto) }}" class="flex">
-                            <img class="w-16 h-12 object-cover"
-                                src="{{ Storage::url($producto->imagenes->first()->imagen_ruta) }}" alt="">
+
+                            @if ($producto->imagenes->count())
+                                <img src="{{ Storage::url($producto->imagenes->first()->imagen_ruta) }}"
+                                    alt="" />
+                            @else
+                                <img src="{{ asset('imagenes/producto/sin_foto_producto.png') }}">
+                            @endif
+
                             <div class="ml-4 text-gray-700">
                                 <p class="text-lg font-semibold leading-5">{{ $producto->nombre }}</p>
                                 <p>Categoria: {{ $producto->subcategoria->categoria->nombre }}</p>

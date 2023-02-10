@@ -12,7 +12,7 @@ class SliderProducto1 extends Component
 
     public function loadProductos()
     {
-        $this->productos = Producto::limit(8)->get();
+        $this->productos = Producto::limit(10)->orderBy('created_at', 'desc')->where('estado', 1)->get();
 
         $this->emit('gliderSliderProducto', $this->slider1);
     }

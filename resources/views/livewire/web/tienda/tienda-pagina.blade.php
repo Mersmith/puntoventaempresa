@@ -1,5 +1,9 @@
 <div class="contenedor_pagina_tienda" x-data="sidebarTienda" x-on:click.away="cerrarSidebarTienda()"
     @resize.window="abiertoSidebarTienda = false > 900">
+
+    <!--SEO-->
+    @section('tituloPagina', 'Tienda')
+
     <!--CONTENEDOR PAGINA TIENDA-->
     <!--CONTENEDOR FILTRO TIENDA-->
     <div class="contenedor_filtro_tienda">
@@ -206,12 +210,12 @@
 
         <!--PAGINACIÓN-->
         @if ($productos->hasPages())
-        <div>
-            {{ $productos->links('pagination::tailwind') }}
-        </div>
-    @endif
+            <div class="contenedor_paginacion">
+                {{ $productos->links('pagination::tailwind') }}
+            </div>
+        @endif
     </div>
-   
+
 </div>
 
 @push('script')

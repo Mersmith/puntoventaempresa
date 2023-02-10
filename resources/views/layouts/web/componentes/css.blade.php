@@ -1,6 +1,10 @@
 {{-- Fontawesome --}}
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.1.2-web/css/all.min.css') }}">
 
+<!--ELEMENTOS-->
+<link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
+
+
 <!-- MENU PRINCIPAL -->
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-principal.css') }}">
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-buscador.css') }}">

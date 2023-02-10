@@ -37,7 +37,8 @@ return new class extends Migration
             $table->boolean('incluye_igv')->default(false);
             $table->boolean('tiene_detalle')->default(false);
             $table->text('detalle')->nullable();
-            $table->enum('estado', [Producto::DESACTIVADO, Producto::ACTIVADO])->default(Producto::DESACTIVADO);
+            //$table->enum('estado', [Producto::DESACTIVADO, Producto::ACTIVADO])->default(Producto::DESACTIVADO);
+            $table->tinyInteger('estado')->default(0)->comment('0=oculto, 1=visible');
             $table->integer('visitas')->default(0);
 
             //Envio

@@ -442,6 +442,10 @@ php artisan make:controller Api\SortSliderController
 php artisan make:controller Web/InicioController
 
 php artisan make:livewire Web/Inicio/SliderProducto1
+php artisan make:livewire Web/Inicio/SliderProducto2
+php artisan make:livewire Web/Inicio/SliderProducto3
+php artisan make:livewire Web/Inicio/SliderProducto4
+php artisan make:livewire Web/Inicio/SliderProducto5
 php artisan make:livewire Web/Inicio/AgregarFavoritoProducto
 php artisan make:livewire Web/Inicio/SuscribirseCorreo
 
@@ -506,6 +510,7 @@ php artisan make:factory CategoriaFactory
 php artisan make:factory SubcategoriaFactory
 
 php artisan make:seeder ColorProductoSeeder
+php artisan make:seeder MedidaProductoSeeder
 php artisan make:seeder MedidaSeeder
 php artisan make:model ColorMedida
 php artisan make:model ColorProducto
@@ -630,6 +635,40 @@ git status
 git add .
 git commit -m "21_Seeder"
 git push origin 21_Seeder
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Web/Carrito/CarritoCompras
+
+php artisan make:model Cupon -m
+php artisan make:livewire Administrador\Cupon\CuponTodoLivewire
+php artisan make:livewire Administrador\Cupon\CuponCrearLivewire
+php artisan make:livewire Administrador\Cupon\CuponEditarLivewire
+
+->Nuevo AuthMiddleware
+php artisan make:middleware AuthMiddleware
+php artisan make:middleware AdministradorMiddleware
+
+->Luego en el Kernel.php de Http agregar
+'auth.custom' => \App\Http\Middleware\AuthMiddleware::class,
+'auth.custom' => \App\Http\Middleware\AdministradorMiddleware::class,
+
+
+php artisan make:livewire Web/Carrito/ActualizarCantidadSinVariacion
+php artisan make:livewire Web/Carrito/ActualizarCantidadVariacionColor
+php artisan make:livewire Web/Carrito/ActualizarCantidadVariacionMedida
+php artisan make:livewire Web/Carrito/ActualizarCantidadVariacionMedidaColor
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 22_Carrito
+git branch
+git status
+
+git add .
+git commit -m "22_Carrito"
+git push origin 22_Carrito
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
