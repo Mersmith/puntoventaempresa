@@ -1,0 +1,237 @@
+.contenedor_pagina_carrito {
+    padding: 20px;
+    background-color: #f3f3f3;
+}
+
+.contenedor_centrar_pagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid_carrito_compras {
+    margin-top: 40px;
+    width: 70%;
+    display: grid;
+    grid-template-areas: "grid_elementos_carrito  grid_metodo_pago";
+    grid-template-columns: 60% 40%;
+    grid-gap: 50px;
+}
+
+.grid_elementos_carrito {
+    grid-area: grid_elementos_carrito;
+}
+
+.grid_elementos_carrito .contenedor_carrito {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.grid_elementos_carrito .contenedor_contacto {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.grid_metodo_pago {
+    grid-area: grid_metodo_pago;
+}
+
+.grid_metodo_pago .contenedor_pago_resumen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+}
+
+/*Estilos grid_elementos_carrito*/
+.grid_carrito_compras h1 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    padding: 10px 0px;
+}
+
+.grid_elementos_carrito table {
+    margin: 15px 0px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.grid_elementos_carrito table td {
+    margin: 20px 0px;
+    height: 140px;
+    max-height: 140px;
+}
+
+.grid_elementos_carrito table th {
+    font-weight: 500;
+}
+
+.grid_elementos_carrito table tbody tr {
+    border-bottom: 1px solid rgb(240, 240, 240);
+    /*box-shadow: 1px 0px 2px 0px rgb(0 0 0 / 18%);*/
+}
+
+.grid_elementos_carrito table tbody td {
+    width: 100px;
+
+}
+
+.datos_producto_datos_tabla {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.datos_producto_datos_tabla .titulo_tabla_producto {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 17px;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+.datos_producto_datos_tabla p {
+    text-align: start;
+}
+
+.datos_producto_datos_tabla i {
+    color: red;
+    cursor: pointer;
+}
+
+.datos_producto_datos_tabla p span {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.imagen_producto_datos_tabla {
+    width: 200px;
+    vertical-align: inherit;
+}
+
+.imagen_producto_datos_tabla img {
+    margin: auto;
+}
+
+/*Fin estilos grid_elementos_carrito*/
+
+/*Estilos grid_metodo_pago*/
+.grid_metodo_pago .contenedor_pago {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar div {
+    margin-bottom: 10px;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar .boton_mercadopago {
+    display: flex;
+    background-color: #3aaaf5;
+    font-size: 16px;
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar .boton_mercadopago:hover {
+    background-color: #2d97dd;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar button {
+    background-color: #ff8809;
+    font-size: 16px;
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid_metodo_pago .contenedor_pago form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.grid_metodo_pago .contenedor_pago form button {
+    margin-top: 5px;
+    background-color: #07cf5a;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.grid_metodo_pago .contenedor_pago form button:hover {
+    background-color: #1fe06f;
+}
+
+.grid_metodo_pago .contenedor_boton_pagar button:hover {
+    background-color: #009eff;
+}
+
+/*Estilos contenedor_contacto*/
+.contenedor_contacto .contenedor_elemento_formulario {
+    margin: 10px 0px;
+}
+
+.contenedor_contacto .contenedor_elemento_formulario label {
+    font-weight: 500;
+}
+
+.contenedor_contacto .contenedor_elemento_formulario input[type=text],
+.contenedor_contacto .contenedor_elemento_formulario select {
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .grid_carrito_compras {
+        width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .grid_carrito_compras {
+        width: 100%;
+        grid-template-areas:
+            "grid_elementos_carrito"
+            "grid_metodo_pago";
+        grid-template-columns: 1fr;
+    }
+
+    .grid_elementos_carrito table tbody td {
+        width: auto;
+    }
+}

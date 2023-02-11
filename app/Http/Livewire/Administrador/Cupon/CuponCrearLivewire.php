@@ -43,11 +43,12 @@ class CuponCrearLivewire extends Component
         $cupon->fecha_expiracion = $this->fecha_expiracion;
 
         $cupon->save();
-        session()->flash('message', 'Cupón creado');
+        
+        session()->flash('message', 'Cupón creado.');
 
         $this->emit('mensajeCreado', "Cupón creado.");
 
-        return redirect()->route('administrador.cupones.index');
+        return redirect()->route('administrador.cupon.index');
     }
 
     public function updated($fields)

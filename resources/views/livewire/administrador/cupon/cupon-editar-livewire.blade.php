@@ -1,73 +1,95 @@
 <div>
+    <!--SEO-->
     @section('tituloPagina', 'EDITAR CUPÓN')
-    <!--Titulo-->
-    <h2 class="contenedor_paginas_titulo">EDITARCUPÓN</h2>
-    <!--Boton regresar-->
-    <div class="contenedor_boton_titulo">
-        <a href="{{ route('administrador.cupones.index') }}">
-            <i class="fa-solid fa-arrow-left-long"></i> Regresar</a>
+
+    @if (Session::has('message'))
+        <div>{{ Session::get('message') }}</div>
+    @endif
+
+    <!--CONTENEDOR CABECERA-->
+    <div class="contenedor_administrador_cabecera">
+        <!--CONTENEDOR TITULO-->
+        <div class="contenedor_titulo_admin">
+            <h2>Editar cupón</h2>
+        </div>
+
+        <!--CONTENEDOR BOTONES-->
+        <div class="contenedor_botones_admin">
+            <a href="{{ route('administrador.cupon.index') }}">
+                <i class="fa-solid fa-arrow-left"></i> Regresar</a>
+        </div>
     </div>
-    <div class="contenedor_paginas_administrador">
+
+    <!--CONTENEDOR CONTENIDO-->
+    <div class="contenedor_administrador_contenido">
         <form wire:submit.prevent="actualizarCupon" class="formulario">
-            <!--Codigo-->
-            <div class="contenedor_1_elementos">
-                <label class="label_principal">
-                    <p class="estilo_nombre_input">Código Cupón: </p>
+            <!--CÓDIGO Y TIPO-->
+            <div class="contenedor_2_elementos">
+                <!--CÓDIGO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Código Cupón: <span class="campo_obligatorio">(Obligatorio)</span>
+                    </p>
                     <input type="text" placeholder="Código de Cupón" wire:model="codigo">
                     @error('codigo')
-                        <span>{{ $message }}</span>
+                        <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
-                </label>
-            </div>
-            <!--Tipo-->
-            <div class="contenedor_1_elementos">
-                <label class="label_principal">
-                    <p class="estilo_nombre_input">Tipo Cupón: </p>
+                </div>
+
+                <!--TIPO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Tipo Cupón: <span class="campo_obligatorio">(Obligatorio)</span></p>
                     <select wire:model="tipo">
                         <option value="fijo" selected>Fijo</option>
                         <option value="porcentaje">Porcentaje</option>
                     </select>
                     @error('tipo')
-                        <span>{{ $message }}</span>
+                        <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
-                </label>
+                </div>
             </div>
-            <!--Descuento-->
-            <div class="contenedor_1_elementos">
-                <label class="label_principal">
+
+            <!--DESCUENTO Y CARRITO MONTO-->
+            <div class="contenedor_2_elementos">
+                <!--DESCUENTO-->
+                <div class="contenedor_elemento_item">
                     <p class="estilo_nombre_input">Descuento @if ($tipo == 'fijo')
                             en $:
                         @elseif($tipo == 'porcentaje')
                             en %:
                         @endif
+                        <span class="campo_obligatorio">(Obligatorio)</span>
                     </p>
                     <input type="text" placeholder="Descuento de Cupón" wire:model="descuento">
                     @error('descuento')
-                        <span>{{ $message }}</span>
+                        <span class="campo_obligatorio">>{{ $message }}</span>
                     @enderror
-                </label>
-            </div>
-            <!--Carrito Monto-->
-            <div class="contenedor_1_elementos">
-                <label class="label_principal">
-                    <p class="estilo_nombre_input">Carrito Monto: </p>
+                </div>
+
+                <!--CARRITO MONTO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Carrito Monto: <span class="campo_obligatorio">(Obligatorio)</span>
+                    </p>
                     <input type="text" placeholder="Monto Carrito" wire:model="carrito_monto">
                     @error('carrito_monto')
-                        <span>{{ $message }}</span>
+                        <span class="campo_obligatorio">>{{ $message }}</span>
                     @enderror
-                </label>
+                </div>
             </div>
-            <!--Fecha-->
-            <div class="contenedor_1_elementos">
-                <label class="label_principal">
-                    <p class="estilo_nombre_input">Fecha Expiración: </p>
+
+            <!--FECHA EXPIRACIÓN Y ENVIAR-->
+            <div class="contenedor_2_elementos">
+                <!--FECHA EXPIRACIÓN-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Fecha Expiración: <span
+                            class="campo_obligatorio">(Obligatorio)</span></p>
                     <input type="date" placeholder="Monto de Expiración" wire:model="fecha_expiracion">
                     @error('fecha_expiracion')
-                        <span>{{ $message }}</span>
+                        <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
-                </label>
+                </div>
             </div>
-            <!--Enviar-->
+
+            <!--ENVIAR-->
             <div class="contenedor_1_elementos">
                 <input type="submit" value="Editar Cupón">
             </div>

@@ -16,6 +16,7 @@
         </div>
     </div>
 
+    <!--CONTENEDOR PÁGINA ADMINISTRADOR-->
     <div class="contenedor_administrador_contenido">
         @if ($productos->count())
 
