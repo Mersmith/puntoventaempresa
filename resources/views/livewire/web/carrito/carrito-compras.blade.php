@@ -57,7 +57,7 @@
                                                     <a wire:click="eliminarProducto('{{ $item->rowId }}')"
                                                         wire:loading.class="text-red-600 opacity-25"
                                                         wire:target="eliminarProducto('{{ $item->rowId }}')">
-                                                        <i class="fas fa-trash"></i>Eliminar Producto
+                                                        <i class="fas fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -70,11 +70,11 @@
                                             <td style="text-align: center;">
                                                 <div>
                                                     @if ($item->options->medida)
-                                                        @livewire('frontend.carrito.actualizar-cantidad-variacion-medida', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
+                                                        @livewire('web.carrito.actualizar-cantidad-variacion-medida', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
                                                     @elseif($item->options->color)
-                                                        @livewire('frontend.carrito.actualizar-cantidad-variacion-color', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
+                                                        @livewire('web.carrito.actualizar-cantidad-variacion-color', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
                                                     @else
-                                                        @livewire('frontend.carrito.actualizar-cantidad-sin-variacion', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
+                                                        @livewire('web.carrito.actualizar-cantidad-sin-variacion', ['rowId' => $item->rowId, 'cantidadProducto' => $item->options->cantidad], key($item->rowId))
                                                     @endif
                                                 </div>
                                             </td>
@@ -246,11 +246,11 @@
 
                             @php
                                 $productosCarrito = json_decode(Cart::instance('shopping')->content(), true);
-
+                                
                                 //$cantidadElementos = array_sum(array_column($productosCarrito, 'id'));
-
+                                
                                 $cantidadElementos = count($productosCarrito);
-
+                                
                                 $totalPuntosProducto = 0;
                                 foreach ($productosCarrito as $producto) {
                                     $opciones = $producto['options'];
@@ -319,7 +319,7 @@
                                 @if ($tienePuntos == 1)
                                     <div class="contenedor_pago">
                                         <div>Ingresa la cantidad de puntos: <code>Tienes
-                                                {{ $puntos_cliente}}</code>
+                                                {{ $puntos_cliente }}</code>
                                             @if (Session::has('puntos_mensaje'))
                                                 <div>{{ Session::get('puntos_mensaje') }}</div>
                                             @endif

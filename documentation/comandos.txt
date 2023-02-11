@@ -672,3 +672,20 @@ git push origin 22_Carrito
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Factory CuponFactory
+php artisan make:factory CuponFactory
+php artisan make:seeder CuponSeeder
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 22_Carrito_Funcionalidad
+git branch
+git status
+
+git add .
+git commit -m "22_Carrito_Funcionalidad"
+git push origin 22_Carrito_Funcionalidad
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

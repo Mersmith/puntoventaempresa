@@ -1,83 +1,150 @@
 <div>
+    <!--SEO-->
     @section('tituloPagina', 'Cupones')
-    <!--Titulo-->
-    <h2 class="contenedor_paginas_titulo">TODOS LOS CUPONES</h2>
-    <!--Boton crear-->
-    <div class="contenedor_boton_titulo">
-        <a href="{{ route('administrador.cupon.crear') }}">Crear Nuevo Cupón</a>
-    </div>
 
     @if (Session::has('message'))
         <div>{{ Session::get('message') }} </div>
     @endif
-    <!--Contenedor Página-->
-    <div class="contenedor_paginas_administrador">
-        @if ($cupones->count())
-            <div class="py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-                    <table class="min-w-full leading-normal">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Código Cupon</th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Tipo</th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Descuento</th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Monto Carrito</th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Expiración</th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200  text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                    Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cupones as $cupon)
-                                <tr>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $cupon->codigo }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $cupon->tipo }}
-                                    </td>
 
-                                    @if ($cupon->tipo == 'fijo')
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            ${{ $cupon->descuento }}.00
-                                        </td>
-                                    @else
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            {{ $cupon->descuento }}%
-                                        </td>
-                                    @endif
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $cupon->carrito_monto }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $cupon->fecha_expiracion }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
-                                        <a href="{{ route('administrador.cupones.editar', ['cupon' => $cupon->id]) }}">
-                                            <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
-                                            Editar
-                                        </a>
-                                        |
-                                        <a wire:click="$emit('eliminarCuponModal', '{{ $cupon->id }}')">
-                                            <span><i class="fa-solid fa-trash" style="color: red;"></i></span>
-                                            Eliminar</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+    <!--CONTENEDOR CABECERA-->
+    <div class="contenedor_administrador_cabecera">
+        <!--CONTENEDOR TITULO-->
+        <div class="contenedor_titulo_admin">
+            <h2>Cupones</h2>
+        </div>
+
+        <!--CONTENEDOR BOTONES-->
+        <div class="contenedor_botones_admin">
+            <a href="{{ route('administrador.cupon.crear') }}">
+                Crear <i class="fa-solid fa-square-plus"></i></a>
+        </div>
+    </div>
+
+    <!--CONTENEDOR PÁGINA ADMINISTRADOR-->
+    <div class="contenedor_administrador_contenido">
+        @if ($cupones->count())
+
+            <!--BUSCADOR-->
+            <div class="contenedor_panel_producto_admin formulario">
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Buscar cupón: <span class="campo_opcional">(Opcional)</span> </p>
+                    <input type="text" wire:model="buscarCupon"
+                        placeholder="Ingrese el nombre del cupón que quiere buscar.">
                 </div>
+            </div>
+
+            <!--TABLA-->
+            <div class="contenedor_panel_producto_admin">
+                <!--CONTENEDOR SUBTITULO-->
+                <div class="contenedor_subtitulo_admin">
+                    <h3>Lista</h3>
+                </div>
+
+                <!--CONTENEDOR BOTONES-->
+                <div class="contenedor_botones_admin">
+                    <button>
+                        PDF <i class="fa-solid fa-file-pdf"></i>
+                    </button>
+                    <button>
+                        EXCEL <i class="fa-regular fa-file-excel"></i>
+                    </button>
+                    <button onClick="window.scrollTo(0, document.body.scrollHeight);">
+                        Abajo <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                </div>
+
+                <!--TABLA-->
+                <div class="tabla_administrador py-4 overflow-x-auto">
+                    <div class="inline-block min-w-full overflow-hidden">
+                        <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Código Cupon</th>
+                                    <th>
+                                        Tipo</th>
+                                    <th>
+                                        Descuento</th>
+                                    <th>
+                                        Monto Carrito</th>
+                                    <th>
+                                        Expiración</th>
+                                    <th>
+                                        Estado</th>
+                                    <th>
+                                        Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cupones as $cupon)
+                                    <tr>
+                                        <td>
+                                            {{ $cupon->codigo }}
+                                        </td>
+                                        <td>
+                                            {{ $cupon->tipo }}
+                                        </td>
+                                        <td>
+                                            @switch($cupon->tipo)
+                                                @case('fijo')
+                                                    ${{ $cupon->descuento }}.00
+                                                @break
+
+                                                @case('porcentaje')
+                                                    {{ $cupon->descuento }}%
+                                                @break
+
+                                                @default
+                                            @endswitch
+                                        </td>
+                                        <td>
+                                            ${{ $cupon->carrito_monto }}
+                                        </td>
+                                        <td>
+                                            Inicio: {{ $cupon->created_at->format('Y-m-d') }} - <span
+                                                style="font-weight: 600">Fin:
+                                                {{ $cupon->fecha_expiracion }}
+                                        </td>
+                                        <td>
+
+                                            @if ($cupon->fecha_expiracion > $cupon->created_at->format('Y-m-d'))
+                                                Falta @php
+                                                    $fechaActual = date('Y-m-d');
+                                                    $datetime1 = date_create($cupon->fecha_expiracion);
+                                                    $datetime2 = date_create($fechaActual);
+                                                    $contador = date_diff($datetime2, $datetime1);
+                                                    $differenceFormat = '%a';
+                                                    echo $contador->format($differenceFormat);
+                                                @endphp días
+                                            @else
+                                                Vencido
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a style="color: green;"
+                                                href="{{ route('administrador.cupon.editar', ['cupon' => $cupon->id]) }}">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </a>
+                                            |
+                                            <a style="color: red;"
+                                                wire:click="$emit('eliminarCuponModal', '{{ $cupon->id }}')">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @if ($cupones->hasPages())
+                    <div>
+                        {{ $cupones->links('pagination::tailwind') }}
+                    </div>
+                @endif
+
+
             </div>
         @else
             <div class="contenedor_no_existe_elementos">
@@ -103,7 +170,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emitTo('administrador.cupon.mostrar-cupones',
+                    Livewire.emitTo('administrador.cupon.cupon-todo-livewire',
                         'eliminarCupon', cuponId);
                     Swal.fire(
                         '¡Eliminado!',

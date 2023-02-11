@@ -19,7 +19,7 @@ class ProductoFactory extends Factory
      */
     public function definition()
     {
-        $nombre = $this->faker->sentence(2);
+        $nombre = $this->faker->unique()->sentence(2);
 
         $subcategoria = Subcategoria::all()->random();
         $categoria = $subcategoria->categoria;

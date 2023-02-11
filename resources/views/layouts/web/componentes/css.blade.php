@@ -4,6 +4,8 @@
 <!--ELEMENTOS-->
 <link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
 
+<!-- Styles Carrito -->
+<link rel="stylesheet" href="{{ asset('web/carrito/carrito.css') }}">
 
 <!-- MENU PRINCIPAL -->
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-principal.css') }}">

@@ -15,6 +15,8 @@ use Carbon\Carbon;
 
 class CarritoCompras extends Component
 {
+    protected $listeners = ['render'];
+
     public $tipo_envio = 1;
     public $contacto, $celular, $direccion, $referencia, $costo_envio = 0;
     public $departamentos, $provincias = [], $distritos = [];
@@ -24,8 +26,6 @@ class CarritoCompras extends Component
     public $tienePuntos = 0, $puntosCanje = 0, $puntos_descuento = 0;
 
     public $puntos_cliente;
-
-    protected $listeners = ['render'];
 
     public $rules = [
         'contacto' => 'required',
