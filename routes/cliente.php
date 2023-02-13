@@ -28,7 +28,7 @@ Route::get('mis-favoritos', FavoritosTodoLivewire::class)->name('favoritos.index
 
 Route::get('mis-cupones', [CuponesController::class, 'index'])->name('cupon.index');
 
-Route::get('mi-orden/{venta}/pagar', VentaPagarLivewire::class)->name('venta.pagar');
 Route::get('mis-ordenes', [VentaController::class, 'index'])->name('venta.index');
 Route::get('mi-orden/{venta}', [VentaController::class, 'mostrar'])->name('venta.mostrar');
+Route::get('mi-orden/{venta}/pagar', VentaPagarLivewire::class)->name('venta.pagar');
 Route::get('orden/{venta}/compra-paypal', [VentaController::class, 'comprarPaypal'])->name('venta.comprar.paypal');

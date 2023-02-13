@@ -1,12 +1,14 @@
 <div>
-    <!--SEO-->
-    @section('tituloPagina', 'PERFIL')
 
-    <!--CONTENEDOR PAGINA PERFIL-->
-    <div class="contenedor_pagina_perfil">
+    <!--SEO-->
+    @section('tituloPagina', 'Mi Perfil')
+    @section('descripcion', 'En ' . env('APP_NAME') . ' tienes tu perfil para que administres tus compras.')
+
+    <!--CONTENEDOR PAGINA CLIENTE-->
+    <div class="contenedor_pagina_cliente">
 
         <!--TITULO-->
-        <h2 class="cliente_paginas_titulo">MIS DATOS PERSONALES</h2>
+        <h2 class="cliente_paginas_titulo">Mis datos personales</h2>
 
         <!--FORMULARIO DATOS-->
         <div x-data class="formulario">
@@ -214,9 +216,11 @@
                     Cambiar contraseña
                 </button>
             </div>
+
         </div>
 
     </div>
+
 </div>
 
 @push('script')

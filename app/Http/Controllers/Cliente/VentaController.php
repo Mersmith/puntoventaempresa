@@ -14,7 +14,7 @@ class VentaController extends Controller
 {
     use AuthorizesRequests;
 
-    //Mis Ordenes en total
+    //Mostrar Mis Ordenes en total - Página
     public function index()
     {
         $ventas = Venta::query()->where('cliente_id', auth()->user()->cliente->id);
@@ -34,10 +34,11 @@ class VentaController extends Controller
         return view('cliente.venta.pagina-index', compact('ventas', 'pendiente', 'recibido', 'enviado', 'entregado', 'anulado'));
     }
 
-    //Mostrar un Orden
+    //Mostrar un Orden - Página
     public function mostrar(Venta $venta)
     {
         $this->authorize('clienteComprador', $venta);
+        $this->authorize('clientePagado', $venta);
 
         $envio = json_decode($venta->envio);
         $productosCarrito = json_decode($venta->contenido);
@@ -45,9 +46,11 @@ class VentaController extends Controller
         return view('cliente.venta.pagina-mostrar', compact('venta', 'productosCarrito', 'envio'));
     }
 
+    //Función para actualizar la compra
     public function comprarPaypal(Venta $venta, Request $request)
     {
         $this->authorize('clienteComprador', $venta);
+        $this->authorize('clientePagador', $venta);
 
         $venta->estado = 2;
         $venta->save();

@@ -1,12 +1,14 @@
 <div>
-    <!--SEO-->
-    @section('tituloPagina', 'Perfil')
 
-    <!--CONTENEDOR PAGINA PERFIL-->
-    <div class="contenedor_pagina_perfil">
+    <!--SEO-->
+    @section('tituloPagina', 'Mis direcciones')
+    @section('descripcion', 'En ' . env('APP_NAME') . ' puedes gestionar las direcciones para el envio.')
+
+    <!--CONTENEDOR PAGINA CLIENTE-->
+    <div class="contenedor_pagina_cliente">
 
         <!--TITULO-->
-        <h2 class="cliente_paginas_titulo">MIS DATOS PERSONALES</h2>
+        <h2 class="cliente_paginas_titulo">Mis direcciones</h2>
 
         <!--CONTENEDOR BOTONES-->
         <div class="contenedor_botones_cliente">

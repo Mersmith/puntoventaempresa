@@ -1,13 +1,16 @@
 <div>
-    <!--SEO-->
-    @section('tituloPagina', 'FAVORITOS')
 
-    <!--CONTENEDOR PAGINA PERFIL-->
-    <div class="contenedor_pagina_perfil">
+    <!--SEO-->
+    @section('tituloPagina', 'Mis favoritos')
+    @section('descripcion', 'En ' . env('APP_NAME') . ' puedes guardar los productos como tus favoritos.')
+
+    <!--CONTENEDOR PAGINA CLIENTE-->
+    <div class="contenedor_pagina_cliente">
 
         <!--TITULO-->
-        <h2 class="cliente_paginas_titulo">MIS FAVORITOS</h2>
+        <h2 class="cliente_paginas_titulo">Mis favoritos</h2>
 
+        <!--LISTA-->
         @if (Cart::instance('wishlist')->count() > 0)
 
             <div class="contenedor_filtro_productos" x-data>
@@ -41,7 +44,7 @@
 
                         <!--CONTENEDOR PIE-->
                         <div class="slider_producto_pie">
-                            <a href="{{ route('producto.index', $item->id) }}">Ver producto</a>
+                            <a href="{{ route('producto.redirigir.id', $item->id) }}">Ver producto</a>
                         </div>
                     </div>
                 @endforeach

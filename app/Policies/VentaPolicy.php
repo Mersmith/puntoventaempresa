@@ -29,7 +29,16 @@ class VentaPolicy
 
     public function clientePagador(User $user, Venta $venta)
     {
-        if ($venta->estado == 1) {
+        if ($venta->estado == 1 || $venta->estado == 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function clientePagado(User $user, Venta $venta)
+    {
+        if ($venta->estado != 1) {
             return true;
         } else {
             return false;
