@@ -36,4 +36,14 @@ class Cliente extends Model
         return $this->hasMany(Direccion::class);
     }
     
+    public function cupones()
+    {
+        return $this->belongsToMany(Cupon::class, 'cliente_cupon');
+    }
+
+    public function clientesCupones()
+    {
+        return $this->hasMany(ClienteCupon::class);
+    }
+   
 }

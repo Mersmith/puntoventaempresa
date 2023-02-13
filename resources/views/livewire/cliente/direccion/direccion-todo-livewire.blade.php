@@ -1,6 +1,6 @@
 <div>
     <!--SEO-->
-    @section('tituloPagina', 'PERFIL')
+    @section('tituloPagina', 'Perfil')
 
     <!--CONTENEDOR PAGINA PERFIL-->
     <div class="contenedor_pagina_perfil">
@@ -14,6 +14,7 @@
                 Crear Dirección <i class="fa-solid fa-square-plus"></i></a>
         </div>
 
+        <!--LISTA-->
         @if ($direcciones->count())
             @foreach ($direcciones as $key => $direccionItem)
                 <div

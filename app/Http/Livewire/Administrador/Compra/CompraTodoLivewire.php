@@ -19,7 +19,7 @@ class CompraTodoLivewire extends Component
 
     public function render()
     {
-        $compras = Compra::paginate(10);
+        $compras = Compra::where('proveedor_id', 'like', '%' . $this->buscarCompra . '%')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('livewire.administrador.compra.compra-todo-livewire', compact('compras'))->layout('layouts.administrador.index');
     }

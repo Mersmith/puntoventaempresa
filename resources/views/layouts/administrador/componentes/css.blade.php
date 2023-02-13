@@ -1,22 +1,41 @@
-<!-- Fontawesome -->
+<!----------------------VENDOR---------------------->
+<!--FONTAWESOME-->
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.1.2-web/css/all.min.css') }}">
 
-<link rel="stylesheet" href="{{ asset('vendor/dropzone5.9.3/dropzone.min.css') }}">
+<!--JQUERY-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<link rel="stylesheet" href="{{ asset('vendor/select2-4.1.0-rc.0/css/select2.min.css') }}">
-
-<!-- Layout -->
-<link rel="stylesheet" href="{{ asset('administrador/layout/layout.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/cabecera.css') }}">
+<!----------------------GENERALES---------------------->
+<!--FORMULARIO-->
 <link rel="stylesheet" href="{{ asset('generales/formulario.css') }}">
-<link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/tabla.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/tab.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/dropzone.css') }}">
-<link rel="stylesheet" href="{{ asset('administrador/layout/modal.css') }}">
 
-<!-- Menu Principal -->
+<!--ELEMENTOS-->
+<link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
+
+<!--VARIABLES-->
+<link rel="stylesheet" href="{{ asset('generales/variables.css') }}">
+
+<!----------------------ADMINISTRADOR---------------------->
+<!--LAYOUT ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/layout.css') }}">
+
+<!--MENU PRINCIPAL ADMINISTRADOR-->
 <link rel="stylesheet" href="{{ asset('administrador/menu/css/menu-principal.css') }}">
 
-<!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--LAYOUT CABECERA ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/cabecera.css') }}">
+
+<!--LAYOUT TABLA ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/tabla.css') }}">
+
+<!--LAYOUT TAB ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/tab.css') }}">
+
+<!--LAYOUT DROPZONE ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/dropzone.css') }}">
+
+<!--LAYOUT MODAL ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/layout/modal.css') }}">
+
+<!--PÁGINA ORDEN ADMINISTRADOR-->
+<link rel="stylesheet" href="{{ asset('administrador/orden/orden.css') }}">

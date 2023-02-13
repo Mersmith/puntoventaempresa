@@ -12,15 +12,9 @@
         "subMenu1": []
     },
     {
-        "id": 2,
-        "nombrePrincipal": "Proveedores",
-        "nombrePrincipalUrl": "administrador.proveedor.index",
-        "subMenu1": []
-    },
-    {
         "id": 3,
         "nombrePrincipal": "Catalogo",
-        "nombrePrincipalUrl": "administrador.color.index",
+        "nombrePrincipalUrl": "#",
         "subMenu1": [
             {
                 "id": 1,
@@ -49,7 +43,7 @@
             {
                 "id": 5,
                 "nombreSubMenu1": "Producto",
-                "nombreSubMenu1Url": "administrador.categoria.index",
+                "nombreSubMenu1Url": "#",
                 "subMenu2": [
                     {
                         "id": 1,
@@ -72,5 +66,79 @@
         "nombrePrincipal": "Cupones",
         "nombrePrincipalUrl": "administrador.cupon.index",
         "subMenu1": []
+    },
+    {
+        "id": 5,
+        "nombrePrincipal": "Compras",
+        "nombrePrincipalUrl": "administrador.compra.index",
+        "subMenu1": []
+    },
+    {
+        "id": 5,
+        "nombrePrincipal": "Ventas",
+        "nombrePrincipalUrl": "administrador.venta.index",
+        "subMenu1": []
+    },
+    {
+        "id": 6,
+        "nombrePrincipal": "Clientes",
+        "nombrePrincipalUrl": "administrador.cliente.index",
+        "subMenu1": []
+    },
+    {
+        "id": 7,
+        "nombrePrincipal": "Empresa",
+        "nombrePrincipalUrl": "#",
+        "subMenu1": [
+            {
+                "id": 1,
+                "nombreSubMenu1": "Información",
+                "nombreSubMenu1Url": "administrador.empresa.index",
+                "subMenu2": []
+            },
+            {
+                "id": 2,
+                "nombreSubMenu1": "Impresora",
+                "nombreSubMenu1Url": "administrador.impresora.index",
+                "subMenu2": []
+            },
+            {
+                "id": 3,
+                "nombreSubMenu1": "Proveedores",
+                "nombreSubMenu1Url": "administrador.proveedor.index",
+                "subMenu2": []
+            },
+            {
+                "id": 4,
+                "nombreSubMenu1": "Slider",
+                "nombreSubMenu1Url": "administrador.slider.index",
+                "subMenu2": []
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "nombrePrincipal": "Estadísticas",
+        "nombrePrincipalUrl": "#",
+        "subMenu1": [
+            {
+                "id": 1,
+                "nombreSubMenu1": "Reporte diario",
+                "nombreSubMenu1Url": "administrador.reporte.dia",
+                "subMenu2": []
+            },
+            {
+                "id": 2,
+                "nombreSubMenu1": "Reporte fecha",
+                "nombreSubMenu1Url": "administrador.reporte.fecha",
+                "subMenu2": []
+            },
+            {
+                "id": 3,
+                "nombreSubMenu1": "General",
+                "nombreSubMenu1Url": "administrador.estadistica.index",
+                "subMenu2": []
+            }
+        ]
     }
 ]

@@ -43,23 +43,23 @@ class DireccionEditarLivewire extends Component
         'distrito_id' => 'El distrito es requerido.',
     ];
 
-    public function mount(Direccion $direccionslug)
+    public function mount(Direccion $direccion)
     {
-        $this->direccion_editar = $direccionslug;
-        $this->nombres = $direccionslug->nombres;
-        $this->celular = $direccionslug->celular;
-        $this->direccion = $direccionslug->direccion;
-        $this->referencia = $direccionslug->referencia;
-        $this->codigo_postal = $direccionslug->codigo_postal;
-        $this->departamento_id = $direccionslug->departamento_id;
-        $this->departamento_nombre = $direccionslug->departamento_nombre;
-        $this->provincia_id = $direccionslug->provincia_id;
-        $this->provincia_nombre = $direccionslug->provincia_nombre;
-        $this->distrito_id = $direccionslug->distrito_id;
-        $this->distrito_nombre = $direccionslug->distrito_nombre;
+        $this->direccion_editar = $direccion;
+        $this->nombres = $direccion->nombres;
+        $this->celular = $direccion->celular;
+        $this->direccion = $direccion->direccion;
+        $this->referencia = $direccion->referencia;
+        $this->codigo_postal = $direccion->codigo_postal;
+        $this->departamento_id = $direccion->departamento_id;
+        $this->departamento_nombre = $direccion->departamento_nombre;
+        $this->provincia_id = $direccion->provincia_id;
+        $this->provincia_nombre = $direccion->provincia_nombre;
+        $this->distrito_id = $direccion->distrito_id;
+        $this->distrito_nombre = $direccion->distrito_nombre;
         $this->departamentos = Departamento::all();
-        $this->provincias = Provincia::where('departamento_id', $direccionslug->departamento_id)->get();
-        $this->distritos = Distrito::where('provincia_id', $direccionslug->provincia_id)->get();
+        $this->provincias = Provincia::where('departamento_id', $direccion->departamento_id)->get();
+        $this->distritos = Distrito::where('provincia_id', $direccion->provincia_id)->get();
     }
 
     public function updatedDepartamentoId($value)

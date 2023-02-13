@@ -14,6 +14,7 @@ use App\Http\Livewire\Administrador\Compra\CompraTodoLivewire;
 use App\Http\Livewire\Administrador\Cupon\CuponCrearLivewire;
 use App\Http\Livewire\Administrador\Cupon\CuponEditarLivewire;
 use App\Http\Livewire\Administrador\Cupon\CuponTodoLivewire;
+use App\Http\Livewire\Administrador\Cupon\CuponVerLivewire;
 use App\Http\Livewire\Administrador\Empresa\EmpresaLivewire;
 use App\Http\Livewire\Administrador\Estadistica\EstadisticaLivewire;
 use App\Http\Livewire\Administrador\Impresora\ImpresoraLivewire;
@@ -28,6 +29,8 @@ use App\Http\Livewire\Administrador\Reporte\CompraFechaLivewire;
 use App\Http\Livewire\Administrador\Slider\SliderLivewire;
 use App\Http\Livewire\Administrador\Subcategoria\SubcategoriaLivewire;
 use App\Http\Livewire\Administrador\Tag\TagLivewire;
+use App\Http\Livewire\Administrador\Venta\VentaEditarLivewire;
+use App\Http\Livewire\Administrador\Venta\VentaTodoLivewire;
 use Illuminate\Support\Facades\Route;
 
 Route::get('prueba-administrador', function () {
@@ -73,3 +76,7 @@ Route::get('slider', SliderLivewire::class)->name('slider.index');
 Route::get('cupones', CuponTodoLivewire::class)->name('cupon.index');
 Route::get('cupones/crear', CuponCrearLivewire::class)->name('cupon.crear');
 Route::get('cupones/{cupon}/editar', CuponEditarLivewire::class)->name('cupon.editar');
+Route::get('cupones/{cupon}/ver', CuponVerLivewire::class)->name('cupon.ver');
+
+Route::get('ventas', VentaTodoLivewire::class)->name('venta.index');
+Route::get('ventas/{venta}/editar', VentaEditarLivewire::class)->name('venta.editar');

@@ -22,5 +22,17 @@
         "nombrePrincipal": "Favoritos",
         "nombrePrincipalUrl": "cliente.favoritos.index",
         "iconoPrincipal": "fas fa-truck"
+    },
+    {
+        "id": 5,
+        "nombrePrincipal": "Cupones",
+        "nombrePrincipalUrl": "cliente.cupon.index",
+        "iconoPrincipal": "fa-solid fa-clipboard-check"
+    },
+    {
+        "id": 6,
+        "nombrePrincipal": "Mis pedidos",
+        "nombrePrincipalUrl": "cliente.venta.index",
+        "iconoPrincipal": "fa-solid fa-clipboard-check"
     }
 ]

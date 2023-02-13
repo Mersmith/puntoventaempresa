@@ -64,7 +64,7 @@
                     </p>
                     <input type="text" placeholder="Descuento de Cupón" wire:model="descuento">
                     @error('descuento')
-                        <span class="campo_obligatorio">>{{ $message }}</span>
+                        <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -81,15 +81,38 @@
 
             <!--FECHA EXPIRACIÓN Y ENVIAR-->
             <div class="contenedor_2_elementos">
+                <!--FECHA INICIO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Fecha Inicio: <span class="campo_obligatorio">(Obligatorio)</span>
+                    </p>
+                    <input type="date" placeholder="Fecha de inicio" wire:model="fecha_inicio">
+                    @error('fecha_inicio')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <!--FECHA EXPIRACIÓN-->
                 <div class="contenedor_elemento_item">
                     <p class="estilo_nombre_input">Fecha Expiración: <span
                             class="campo_obligatorio">(Obligatorio)</span></p>
-                    <input type="date" placeholder="Monto de Expiración" wire:model="fecha_expiracion">
+                    <input type="date" placeholder="Fecha de Expiración" wire:model="fecha_expiracion">
                     @error('fecha_expiracion')
                         <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
-                </div>                
+                </div>
+            </div>
+
+            <!--LÍMITE DE USO-->
+            <div class="contenedor_2_elementos">
+                <!--LÍMITE DE USO-->
+                <div class="contenedor_elemento_item">
+                    <p class="estilo_nombre_input">Límite de uso: <span class="campo_obligatorio">(Obligatorio)</span>
+                    </p>
+                    <input type="number" placeholder="Límite de uso" wire:model="limite">
+                    @error('limite')
+                        <span class="campo_obligatorio">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
 
             <!--ENVIAR-->

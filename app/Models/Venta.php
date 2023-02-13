@@ -11,14 +11,24 @@ class Venta extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'estado'];
 
-    public function usuario()
+    public function administrador()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Administrador::class);
     }
 
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);
+    }
+
+    public function direccion()
+    {
+        return $this->belongsTo(Direccion::class, 'direccion_id', 'id');
+    }
+
+    public function cupon()
+    {
+        return $this->belongsTo(Cupon::class);
     }
 
     public function ventaDetalle()

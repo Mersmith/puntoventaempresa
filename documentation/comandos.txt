@@ -645,6 +645,7 @@ php artisan make:model Cupon -m
 php artisan make:livewire Administrador\Cupon\CuponTodoLivewire
 php artisan make:livewire Administrador\Cupon\CuponCrearLivewire
 php artisan make:livewire Administrador\Cupon\CuponEditarLivewire
+php artisan make:livewire Administrador\Cupon\CuponVerLivewire
 
 ->Nuevo AuthMiddleware
 php artisan make:middleware AuthMiddleware
@@ -686,6 +687,76 @@ git status
 git add .
 git commit -m "22_Carrito_Funcionalidad"
 git push origin 22_Carrito_Funcionalidad
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+->Seeder DireccionSeeder
+php artisan make:seeder DireccionSeeder
+
+php artisan make:model ClienteCupon
+php artisan make:migration create_cliente_cupon_table
+
+php artisan make:controller Cliente/CuponesController
+
+php artisan make:livewire Administrador/Venta/VentaTodoLivewire
+php artisan make:livewire Administrador/Venta/VentaEditarLivewire
+
+
+***********************************************************
+
+php artisan make:seeder ClienteCuponSeeder
+php artisan make:seeder DepartamentoSeeder
+php artisan make:seeder PronvinciaSeeder
+php artisan make:seeder DistritoSeeder
+
+php artisan make:livewire Cliente\Venta\VentaPagarLivewire
+
+->Crear los VentaPolicy.php y ProductoPolicy en Policies
+php artisan make:policy VentaPolicy
+php artisan make:policy ProductoPolicy
+
+En app/Providers/AuthServiceProvider.php: agregar
+protected $policies = [
+    Order::class => OrderPolicy::class,
+];
+
+php artisan make:controller Cliente/VentaController
+
+
+->Crear aplicacion con Mercado Pago
+->Elige el producto que vas a integrar: Checkout Pro
+
+https://www.mercadopago.com.pe/developers/es
+https://www.mercadopago.com.pe/developers/panel
+https://packagist.org/packages/mercadopago/dx-php
+
+->PayPal
+->Crear cuentas de comprador y vendedor
+
+https://github.com/paypal/PayPal-PHP-SDK
+composer require paypal/rest-api-sdk-php:*
+composer remove paypal/rest-api-sdk-php
+->Checkout PAYPAL
+https://developer.paypal.com/sdk/js/reference/
+
+***********************************************************
+
+composer remove paypal/rest-api-sdk-php
+composer remove paypal/rest-api-sdk-php:*
+composer update
+
+php artisan make:livewire Web/Carrito/CarritoComprasPaypal
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 23_Compra_Paypal
+git branch
+git status
+
+git add .
+git commit -m "23_Compra_Paypal"
+git push origin 23_Compra_Paypal
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

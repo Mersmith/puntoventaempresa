@@ -1,0 +1,58 @@
+*************************************************************************
+*************************************************************************
+
+->PayPal
+->Crear cuentas de comprador y vendedor
+
+https://github.com/paypal/PayPal-PHP-SDK
+composer require paypal/rest-api-sdk-php:*
+composer remove paypal/rest-api-sdk-php
+->Checkout PAYPAL
+https://developer.paypal.com/sdk/js/reference/
+
+https://developer.paypal.com/dashboard/
+
+*************************************************************************
+*************************************************************************
+
+Comprador
+Email: sb-dohf721740524@personal.example.com
+Contraseña: 5157808988
+
+Bank Account
+258294582393387
+Account Number
+325272063
+Routing Number
+
+Credit Card
+4129851181465018
+Credit Card Number
+VISA
+Credit Card Type
+10/2027
+Expiration Date
+123
+
+PayPal
+USD 3,730.50
+
+*************************************************************************
+*************************************************************************
+
+
+Vendedor
+Email: sb-fttck15131077@business.example.com
+Contraseña: 5195374317
+
+Sandbox Account
+sb-fttck15131077@business.example.com
+Client ID
+AWCXfdSC5a70Rk1JAOpFueUJ07VKHJt9oBmSDPeyyfX5Ccd8p7JZo0YS4iCOsc0ra9jjMG7wcbaQc_YW
+Secret
+EEVVcIpVg_TrOPNsHdIf_WRljMiZE5JS_crvox-7VQfGz8B7oVCRXWWbDie35s_lBq1hE6hJrvwVulqE
+
+https://www.sandbox.paypal.com/es/home
+
+*************************************************************************
+*************************************************************************

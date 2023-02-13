@@ -22,10 +22,10 @@ return new class extends Migration
             $table->float('impuesto');
             
             $table->unsignedBigInteger('proveedor_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('administrador_id');
 
             $table->foreign('proveedor_id')->references('id')->on('proveedors');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('administrador_id')->references('id')->on('administradors');
 
             $table->timestamps();
         });

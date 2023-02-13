@@ -18,8 +18,9 @@ class DireccionTodoLivewire extends Component
 
     public function traerDirecciones()
     {
-        //$this->direcciones = Direccion::where('user_id', auth()->user()->id)->orderBy('posicion', 'asc')->get();
-        $this->direcciones = Direccion::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+        //$this->direcciones = auth()->user()->cliente->direcciones;
+        //$this->direcciones = Direccion::where('cliente_id', auth()->user()->cliente->id)->orderBy('updated_at', 'asc')->get();
+        $this->direcciones = Direccion::where('cliente_id', auth()->user()->cliente->id)->orderBy('updated_at', 'desc')->get();
     }
 
     public function establecerPrincipal(Direccion $direccion)
