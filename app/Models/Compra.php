@@ -18,9 +18,9 @@ class Compra extends Model
     const ENTREGADO = 5;
     const ANULADO = 6;
 
-    public function user()
+    public function administrador()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Administrador::class);
     }
 
     public function proveedor()

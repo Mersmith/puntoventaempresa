@@ -13,4 +13,20 @@ class Cupon extends Model
 
     const FIJO = "fijo";
     const PORCENTAJE = "porcentaje";
+
+    public function ventas()
+    {
+        return $this->hasMany(Venta::class);
+    }
+
+    public function clientes()
+    {
+        return $this->belongsToMany(Cliente::class, 'cliente_cupon');
+    }
+
+    public function clientesCupones()
+    {
+        return $this->hasMany(ClienteCupon::class);
+    }
+
 }

@@ -1,3 +1,4 @@
+<!----------------------VENDOR---------------------->
 <!--FONTAWESOME-->
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.1.2-web/css/all.min.css') }}">
 
@@ -17,11 +18,11 @@
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-carrito.css') }}">
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-pie.css') }}">
 
+<!--PIE PÁGINA WEB-->
+<link rel="stylesheet" href="{{ asset('web/inicio/css/pie-pagina.css') }}">
+
 <!-- SLIDER PRODUCTO -->
 <link rel="stylesheet" href="{{ asset('web/inicio/css/slider-producto.css') }}">
-
-<!--PIE PAGINA WEB-->
-<link rel="stylesheet" href="{{ asset('web/inicio/css/pie-pagina.css') }}">
 
 <!----------------------CLIENTE---------------------->
 <!--LAYOUT CLIENTE-->
@@ -30,11 +31,8 @@
 <!--MENU PRINCIPAL CLIENTE-->
 <link rel="stylesheet" href="{{ asset('cliente/menu/menu-principal.css') }}">
 
-<!--PERFIL CLIENTE-->
+<!--PÁGINA PERFIL CLIENTE-->
 <link rel="stylesheet" href="{{ asset('cliente/perfil/perfil.css') }}">
 
-<!--FAVORITO CLIENTE-->
+<!--PÁGINA FAVORITO CLIENTE-->
 <link rel="stylesheet" href="{{ asset('cliente/favorito/favorito.css') }}">
-
-
-

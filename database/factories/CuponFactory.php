@@ -33,6 +33,7 @@ class CuponFactory extends Factory
             'descuento' => $descuento,
             'carrito_monto' => $this->faker->randomElement([1000, 1200, 1400, 1500]),
             'fecha_expiracion' => $this->faker->dateTimeInInterval('-3 days', '+1 months'),
+            //'fecha_expiracion' => $faker->dateTimeBetween('+0 days', '+1 year'),
             //'fecha_expiracion' => $this->faker->dateTimeThisMonth(),
         ];
     }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Cupon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cupons', function (Blueprint $table) {
+        Schema::create('cliente_cupon', function (Blueprint $table) {
             $table->id();
 
-            $table->string('codigo')->unique();
-            $table->enum('tipo', [Cupon::FIJO, Cupon::PORCENTAJE])->default(Cupon::FIJO);
-            $table->float('descuento');
-            $table->float('carrito_monto');
-            $table->date('fecha_expiracion');
+            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cupon_id');
+            $table->boolean('uso')->default(false);
+
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cupon_id')->references('id')->on('cupons');
 
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cupons');
+        Schema::dropIfExists('cliente_cupon');
     }
 };

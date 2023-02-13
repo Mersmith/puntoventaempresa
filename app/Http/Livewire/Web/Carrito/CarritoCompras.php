@@ -2,34 +2,46 @@
 
 namespace App\Http\Livewire\Web\Carrito;
 
+use App\Models\ClienteCupon;
 use App\Models\Cupon;
 use App\Models\Departamento;
+use App\Models\Direccion;
 use Livewire\Component;
 use App\Models\Provincia;
 use App\Models\Distrito;
+use App\Models\Producto;
 use App\Models\Venta;
+use App\Models\VentaDetalle;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CarritoCompras extends Component
 {
     protected $listeners = ['render'];
 
     public $tipo_envio = 1;
-    public $contacto, $celular, $direccion, $referencia, $costo_envio = 0;
-    public $departamentos, $provincias = [], $distritos = [];
-    public $departamento_id = "", $provincia_id = "", $distrito_id = "";
-    public $codigo_cupon, $tipoCupon = "fijo", $tieneCodigoCupon = 0, $cupon_descuento = 0;
 
-    public $tienePuntos = 0, $puntosCanje = 0, $puntos_descuento = 0;
+    public $direccion_principal, $costo_envio = 0, $observacion_envio;
 
-    public $puntos_cliente;
+    public $cuponFormulario = [
+        'cupon' => null,
+        'cupon_id' => null,
+        'cupon_codigo' => null,
+        'cupon_tipo' => "fijo",
+        'cupon_descuento' => 0,
+        'cupon_tiene' => 0,
+    ];
+
+    public $puntosFormulario = [
+        'puntos_canje' => 0,
+        'puntos_dinero' => 0,
+        'puntos_tiene' => 0,
+    ];
 
     public $rules = [
-        'contacto' => 'required',
-        'celular' => 'required',
         'tipo_envio' => 'required'
     ];
 
@@ -45,9 +57,8 @@ class CarritoCompras extends Component
 
     public function mount()
     {
-        $this->departamentos = Departamento::all();
-        $this->contacto = auth()->user()->cliente->nombre . ' ' . auth()->user()->cliente->apellido;
-        $this->celular = auth()->user()->cliente->celular;
+        $this->direccion_principal = Direccion::where('cliente_id', auth()->user()->cliente->id)->orderBy('updated_at', 'desc')->first();
+        $this->costo_envio = Provincia::find($this->direccion_principal->provincia_id)->costo;
     }
 
     public function updatedTipoEnvio($value)
@@ -57,20 +68,6 @@ class CarritoCompras extends Component
                 'departamento_id', 'provincia_id', 'distrito_id', 'direccion', 'referencia'
             ]);
         }
-    }
-
-    public function updatedDepartamentoId($value)
-    {
-        $this->provincias = Provincia::where('departamento_id', $value)->get();
-        $this->reset(['provincia_id', 'distrito_id']);
-    }
-
-    public function updatedProvinciaId($value)
-    {
-        $provincia = Provincia::find($value);
-        $this->costo_envio = $provincia->costo;
-        $this->distritos = Distrito::where('provincia_id', $value)->get();
-        $this->reset('distrito_id');
     }
 
     public function eliminarCarritoCompras()
@@ -87,94 +84,189 @@ class CarritoCompras extends Component
 
     public function aplicarCodigoCupon()
     {
-        $cupon = Cupon::where('codigo', $this->codigo_cupon)->where('fecha_expiracion', '>=', Carbon::today())->where('carrito_monto', '<=', Cart::instance('shopping')->subtotal(2, '.', ''))->first();
+        $cupon = Cupon::where('codigo', $this->cuponFormulario['cupon_codigo'])->where('fecha_expiracion', '>=', Carbon::today())->where('carrito_monto', '<=', Cart::instance('shopping')->subtotal(2, '.', ''))->first();
+
         if (!$cupon) {
             //session()->flash('cupon_mensaje', 'Cupon invalido');
-            $this->emit('mensajeEliminado', "Cupón inválido.");
+            $this->emit('mensajeEliminado', "El cupón invalido.");
+            $this->reset('cuponFormulario');
             return;
         } else {
-            //session()->flash('cupon_mensaje', 'Cupon valido');
-            $this->emit('mensajeCreado', "Cupón activado.");
-            $this->cupon_descuento = $cupon->descuento;
-            $this->tipoCupon = $cupon->tipo;
+            if ($cupon->usado <= $cupon->limite) {
+                $cuponesAsignados = auth()->user()->cliente->cupones->pluck('id')->toArray();
+
+                if (!in_array($cupon->id, $cuponesAsignados)) {
+                    $this->emit('mensajeEliminado', "No tienes asignado este cupón.");
+                    $this->reset('cuponFormulario');
+                } else {
+
+                    //session()->flash('cupon_mensaje', 'Cupon valido');
+                    $this->cuponFormulario['cupon'] = $cupon;
+                    $this->cuponFormulario['cupon_id'] = $cupon->id;
+                    $this->cuponFormulario['cupon_codigo'] = $cupon->codigo;
+                    $this->cuponFormulario['cupon_tipo'] = $cupon->tipo;
+                    $this->cuponFormulario['cupon_descuento'] = $cupon->descuento;
+
+                    $this->emit('mensajeCreado', "Cupón activado.");
+                }
+            } else {
+                $this->emit('mensajeEliminado', "El cupón ha alcanzado su límite de usos.");
+            }
         }
     }
 
     public function eliminarCupon()
     {
-        $this->cupon_descuento = 0;
-        $this->tieneCodigoCupon = 0;
+        $this->reset('cuponFormulario');
     }
 
     public function aplicarPuntos()
     {
-        $puntosEntero = (int)$this->puntosCanje;
-        if ($puntosEntero <= $this->puntos_cliente) {
-            //session()->flash('puntos_mensaje', 'Puntos validos');
-            $this->emit('mensajeCreado', "Puntos activado.");
-            //1 punto = 1.5 soles
-            //5 puntos = 5*1.5 soles = 7.5 soles
-            $this->puntos_descuento = $puntosEntero * config('services.crd.puntos');
+        $puntosEntero = (int)$this->puntosFormulario['puntos_canje'];
+
+        if ($puntosEntero <= auth()->user()->cliente->puntos) {
+
+            if ($puntosEntero * config('services.crd.puntos') > Cart::instance('shopping')->subtotal(2, '.', '')) {
+                $this->reset('puntosFormulario');
+                $this->emit('mensajeEliminado', "Puntos exceden a la monto de compra.");
+                return;
+            } else {
+                //session()->flash('puntos_mensaje', 'Puntos validos');
+                //1 punto = 1.5 soles
+                //5 puntos = 5*1.5 soles = 7.5 soles
+                $this->puntosFormulario['puntos_dinero'] = $puntosEntero * config('services.crd.puntos');
+                $this->emit('mensajeCreado', "Puntos activado.");
+            }
         } else {
             //session()->flash('puntos_mensaje', 'Puntos invalidos');
-            $this->emit('mensajeEliminado', "Puntos inválido.");
+            $this->reset('puntosFormulario');
+            $this->emit('mensajeEliminado', "Puntos insuficiente.");
             return;
         }
     }
 
     public function eliminarPuntos()
     {
-        $this->puntos_descuento = 0;
-        $this->tienePuntos = 0;
+        $this->reset('puntosFormulario');
     }
 
     public function crearOrden()
     {
-        $rules = $this->rules;
+        $this->validate();
 
-        if ($this->tipo_envio == 2) {
-            $rules['departamento_id'] = 'required';
-            $rules['provincia_id'] = 'required';
-            $rules['distrito_id'] = 'required';
-            $rules['direccion'] = 'required';
-            $rules['referencia'] = 'required';
+        $productosCarrito = json_decode(Cart::instance('shopping')->content(), true);
+        $totalPuntosProducto = 0;
+
+        foreach ($productosCarrito as $producto) {
+            $opciones = $producto['options'];
+            $totalPuntosProducto += $opciones['puntos_ganar'] * $producto['qty'];
         }
 
-        $this->validate($rules);
-
-        $orden = new Venta();
-
-        $orden->user_id = auth()->user()->id;
-        $orden->contacto = $this->contacto;
-        $orden->celular = $this->celular;
-        $orden->tipo_envio = $this->tipo_envio;
-        $orden->costo_envio = 0;
-        $orden->total = $this->costo_envio + Cart::instance('shopping')->subtotal(2, '.', '') - (float)$this->cupon_descuento - (float)$this->puntos_descuento;
-        $orden->contenido = Cart::instance('shopping')->content();
-        $orden->cupon_descuento = $this->codigo_cupon;
-        $orden->cupon_precio = $this->cupon_descuento;
-        $orden->puntos_canjeados = $this->puntosCanje;
+        $envio = null;
+        $precio_envio = $this->costo_envio;
+        $direccion_id = null;
 
         if ($this->tipo_envio == 2) {
-            $orden->costo_envio = $this->costo_envio;
-            $orden->envio = json_encode([
-                'departamento' => Departamento::find($this->departamento_id)->nombre,
-                'provincia' => Provincia::find($this->provincia_id)->nombre,
-                'distrito' => Distrito::find($this->distrito_id)->nombre,
-                'direccion' => $this->direccion,
-                'referencia' => $this->referencia
+            $envioJson = json_encode([
+                'departamento' => $this->direccion_principal->departamento_nombre,
+                'provincia' => $this->direccion_principal->provincia_nombre,
+                'distrito' => $this->direccion_principal->distrito_nombre,
+                'direccion' => $this->direccion_principal->direccion,
+                'referencia' => $this->direccion_principal->referencia,
             ]);
+            $envio = $envioJson;
+            $direccion_id = $this->direccion_principal->id;
+        } else {
+            $precio_envio = 0;
         }
 
-        $orden->save();
+        // Inicio de la transacción
+        DB::beginTransaction();
 
-        foreach (Cart::instance('shopping')->content() as $item) {
-            stockActualizar($item);
+        try {
+            // Creación de la venta
+            $venta = Venta::create([
+                'cliente_id' => auth()->user()->cliente->id,
+                'direccion_id' => $direccion_id,
+                'total' => $this->costo_envio + Cart::instance('shopping')->subtotal(2, '.', '') - (float)$this->cuponFormulario['cupon_descuento'] - (float)$this->puntosFormulario['puntos_dinero'],
+                'contenido' => Cart::instance('shopping')->content(),
+                'tipo_envio' => $this->tipo_envio,
+                'envio' => $envio,
+                'costo_envio' => $precio_envio,
+                'puntos_usados' => $this->puntosFormulario['puntos_canje'],
+                'puntos_ganados' => $totalPuntosProducto,
+                'puntos_dinero' => $this->puntosFormulario['puntos_dinero'],
+                'observacion' => $this->observacion_envio,
+            ]);
+
+            // Verificación de cupón y asignación a la venta
+            if ($this->cuponFormulario['cupon']) {
+                $cupon = Cupon::where('codigo', $this->cuponFormulario['cupon_codigo'])->first();
+
+                $venta->cupon_id = $this->cuponFormulario['cupon_id'];
+                $venta->cupon_codigo = $this->cuponFormulario['cupon_codigo'];
+                $venta->cupon_tipo = $this->cuponFormulario['cupon_tipo'];
+                $venta->cupon_descuento = $this->cuponFormulario['cupon_descuento'];
+                $venta->save();
+
+                // Aumentar la cantidad de uso
+                if ($cupon->usado <= $cupon->limite) {
+                    $cupon->usado = $cupon->usado + 1;
+                    $cupon->save();
+                }
+
+                // Cambiar estado de uso
+                $clienteCupon = ClienteCupon::where('cliente_id', auth()->user()->cliente->id)
+                    ->where('cupon_id', $this->cuponFormulario['cupon_id'])
+                    ->first();
+                $clienteCupon->uso = 1;
+                $clienteCupon->save();
+            }
+
+            // Creación de los detalles de venta
+            foreach (Cart::instance('shopping')->content() as $item) {
+                VentaDetalle::create([
+                    'venta_id' => $venta->id,
+                    'producto_id' => $item->id,
+                    'cantidad' => $item->qty,
+                    //'price' => Producto::find($item->id)->precio_venta
+                    'precio' => $item->price,
+                    'contenido' => $item->options,
+                ]);
+            }
+
+            // Confirmación de la transacción
+            DB::commit();
+
+            $this->emit('mensajeCreado', "Orden generada.");
+
+            foreach (Cart::instance('shopping')->content() as $item) {
+                stockActualizar($item);
+            }
+
+            Cart::instance('shopping')->destroy();
+
+            $this->emitTo('web.menu.menu-carrito', 'render');
+
+            //return redirect()->route('cliente.orden.pagar', $venta);
+
+            // Retorno de la respuesta
+            //return response()->json([
+            //    'message' => 'Venta registrada con éxito'
+            //], 201);
+
+        } catch (\Exception $e) {
+
+            // Deshacer la transacción
+            DB::rollback();
+
+            $this->emit('mensajeEliminado', "Error en la compra vuelve a intentarlo.");
+
+            // Retorno de la respuesta con error
+            //return response()->json([
+            //    'message' => 'Error al registrar la venta'
+            //], 500);
         }
-
-        Cart::instance('shopping')->destroy();
-
-        return redirect()->route('cliente.orden.pagar', $orden);
     }
 
     public function render()

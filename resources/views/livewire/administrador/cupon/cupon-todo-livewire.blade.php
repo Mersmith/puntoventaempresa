@@ -68,6 +68,10 @@
                                     <th>
                                         Monto Carrito</th>
                                     <th>
+                                        Límite</th>
+                                    <th>
+                                        Usado</th>
+                                    <th>
                                         Expiración</th>
                                     <th>
                                         Estado</th>
@@ -101,13 +105,17 @@
                                             ${{ $cupon->carrito_monto }}
                                         </td>
                                         <td>
-                                            Inicio: {{ $cupon->created_at->format('Y-m-d') }} - <span
-                                                style="font-weight: 600">Fin:
+                                            {{ $cupon->limite }}
+                                        </td>
+                                        <td>
+                                            {{ $cupon->usado }}
+                                        </td>
+                                        <td>
+                                            Inicio: {{ $cupon->fecha_inicio }} - <span style="font-weight: 600">Fin:
                                                 {{ $cupon->fecha_expiracion }}
                                         </td>
                                         <td>
-
-                                            @if ($cupon->fecha_expiracion > $cupon->created_at->format('Y-m-d'))
+                                            @if ($cupon->fecha_expiracion > $cupon->fecha_inicio)
                                                 Falta @php
                                                     $fechaActual = date('Y-m-d');
                                                     $datetime1 = date_create($cupon->fecha_expiracion);
@@ -121,6 +129,11 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <a style="color: #009eff;"
+                                                href="{{ route('administrador.cupon.ver', $cupon) }}">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            |
                                             <a style="color: green;"
                                                 href="{{ route('administrador.cupon.editar', ['cupon' => $cupon->id]) }}">
                                                 <i class="fa-solid fa-pencil"></i>
@@ -143,7 +156,6 @@
                         {{ $cupones->links('pagination::tailwind') }}
                     </div>
                 @endif
-
 
             </div>
         @else

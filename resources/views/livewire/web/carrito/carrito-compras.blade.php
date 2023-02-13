@@ -100,22 +100,11 @@
                             <hr>
                             <!--Nombre-->
                             <div class="contenedor_elemento_formulario">
-                                <label>Nombre de contácto:</label>
+                                <label>Observación de envio:</label>
                                 <input type="text"
                                     placeholder="Ingrese el nombre de la persona que recibirá el producto."
-                                    wire:model.defer="contacto">
-                                @error('contacto')
-                                    <span>
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <!--Celular-->
-                            <div class="contenedor_elemento_formulario">
-                                <label>Teléfono de contácto:</label>
-                                <input type="text" placeholder="Ingrese un número de telefono de contácto."
-                                    wire:model.defer="celular">
-                                @error('contacto')
+                                    wire:model.defer="observacion_envio">
+                                @error('observacion_envio')
                                     <span>
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -146,76 +135,11 @@
                                 </div>
                                 {{-- class: Clase dinamica de alpine --}}
                                 <div :class="{ 'hidden': tipo_envio != 2 }">
-                                    <!--Departamentos-->
-                                    <div class="contenedor_elemento_formulario">
-                                        <label>Departamento:</label>
-                                        <select wire:model="departamento_id">
-                                            <option value="" selected disabled>Seleccione un departamento</option>
-
-                                            @foreach ($departamentos as $departamento)
-                                                <option value="{{ $departamento->id }}">{{ $departamento->nombre }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('departamento_id')
-                                            <span>
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <!--Provincia-->
-                                    <div class="contenedor_elemento_formulario">
-                                        <label>Provincia:</label>
-                                        <select wire:model="provincia_id">
-                                            <option value="" selected disabled>Seleccione una provincia</option>
-
-                                            @foreach ($provincias as $provincia)
-                                                <option value="{{ $provincia->id }}">{{ $provincia->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('provincia_id')
-                                            <span>
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <!--Distritos-->
-                                    <div class="contenedor_elemento_formulario">
-                                        <label>Distrito:</label>
-                                        <select wire:model="distrito_id">
-                                            <option value="" selected disabled>Seleccione un distrito</option>
-
-                                            @foreach ($distritos as $distrito)
-                                                <option value="{{ $distrito->id }}">{{ $distrito->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('distrito_id')
-                                            <span>
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <!--Dirección-->
-                                    <div class="contenedor_elemento_formulario">
-                                        <label>Dirección:</label>
-                                        <input type="text" placeholder="Dirección del contácto."
-                                            wire:model="direccion">
-                                        @error('direccion')
-                                            <span>
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                     <!--Referencia-->
                                     <div class="contenedor_elemento_formulario">
                                         <label>Referencia:</label>
                                         <input type="text" placeholder="Referencia de la dirección."
-                                            wire:model="referencia">
-                                        @error('direccion')
-                                            <span>
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                            value="{{ $direccion_principal->referencia }} " disabled>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +183,7 @@
                             @endphp
 
                             <!--CUPON-->
-                            @if (!$cupon_descuento > 0)
+                            @if (!$cuponFormulario['cupon_descuento'] > 0)
                                 <div class="contenedor_pago">
                                     <div>Cupón: </div>
                                     <div>
@@ -267,11 +191,11 @@
                                             ¿Tienes código de
                                             cupón?
                                             <input type="checkbox" name="tieneCodigoCupon" value="1"
-                                                wire:model="tieneCodigoCupon">
+                                                wire:model="cuponFormulario.cupon_tiene">
                                         </label>
                                     </div>
                                 </div>
-                                @if ($tieneCodigoCupon == 1)
+                                @if ($cuponFormulario['cupon_tiene'] == 1)
                                     <div class="contenedor_pago">
                                         <div>Ingresa el código de cupón:
                                             @if (Session::has('cupon_mensaje'))
@@ -279,25 +203,26 @@
                                             @endif
                                         </div>
                                         <form wire:submit.prevent="aplicarCodigoCupon">
-                                            <input type="text" name="codigo_cupon" wire:model="codigo_cupon">
+                                            <input type="text" name="codigo_cupon"
+                                                wire:model="cuponFormulario.cupon_codigo">
                                             <button type="submit">Aplicar</button>
                                         </form>
                                     </div>
                                 @endif
                             @endif
-                            @if ($cupon_descuento > 0)
+                            @if ($cuponFormulario['cupon_descuento'] > 0)
                                 <div class="contenedor_pago">
                                     <div>Cupón: </div>
                                     <div>
                                         <span wire:click.prevent="eliminarCupon"><i
                                                 class="fa-solid fa-xmark"></i></span>
-                                        @if ($tipoCupon == 'fijo')
+                                        @if ($cuponFormulario['cupon_tipo'] == 'fijo')
                                             <span>
-                                                -${{ number_format($cupon_descuento, 2) }}
+                                                -${{ number_format($cuponFormulario['cupon_descuento'], 2) }}
                                             </span>
                                         @else
                                             <span>
-                                                -{{ $cupon_descuento }} %
+                                                -{{ $cuponFormulario['cupon_descuento'] }} %
                                             </span>
                                         @endif
                                     </div>
@@ -305,40 +230,41 @@
                             @endif
                             <hr>
                             <!--PUNTOS-->
-                            @if (!$puntos_descuento > 0)
+                            @if (!$puntosFormulario['puntos_dinero'] > 0)
                                 <div class="contenedor_pago">
                                     <div>Puntos: <code>Estas ganando {{ $totalPuntosProducto }}</code> </div>
                                     <div>
                                         <label style="cursor: pointer">
                                             ¿Quieres usar CRD Puntos?
                                             <input type="checkbox" name="tienePuntos" value="1"
-                                                wire:model="tienePuntos">
+                                                wire:model="puntosFormulario.puntos_tiene">
                                         </label>
                                     </div>
                                 </div>
-                                @if ($tienePuntos == 1)
+                                @if ($puntosFormulario['puntos_tiene'] == 1)
                                     <div class="contenedor_pago">
                                         <div>Ingresa la cantidad de puntos: <code>Tienes
-                                                {{ $puntos_cliente }}</code>
+                                                {{ auth()->user()->cliente->puntos }}</code>
                                             @if (Session::has('puntos_mensaje'))
                                                 <div>{{ Session::get('puntos_mensaje') }}</div>
                                             @endif
                                         </div>
                                         <form wire:submit.prevent="aplicarPuntos">
-                                            <input type="number" name="puntosCanje" wire:model="puntosCanje">
+                                            <input type="number" name="puntosCanje"
+                                                wire:model="puntosFormulario.puntos_canje">
                                             <button type="submit">Aplicar</button>
                                         </form>
                                     </div>
                                 @endif
                             @endif
-                            @if ($puntos_descuento > 0)
+                            @if ($puntosFormulario['puntos_dinero'] > 0)
                                 <div class="contenedor_pago">
                                     <div>Puntos: <code>Estas ganando {{ $totalPuntosProducto }}</code> </div>
                                     <div>
                                         <span wire:click.prevent="eliminarPuntos"><i
                                                 class="fa-solid fa-xmark"></i></span>
                                         <span>
-                                            -${{ number_format($puntos_descuento, 2) }}
+                                            -${{ number_format($puntosFormulario['puntos_dinero'], 2) }}
                                         </span>
                                     </div>
                                 </div>
@@ -351,13 +277,13 @@
                                 </div>
                                 <div>
                                     @if ($tipo_envio == 1)
-                                        @if ($tipoCupon == 'fijo')
-                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento, 2) }}
+                                        @if ($cuponFormulario['cupon_tipo'] == 'fijo')
+                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cuponFormulario['cupon_descuento'] - $puntosFormulario['puntos_dinero'], 2) }}
                                         @else
-                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cupon_descuento - $puntos_descuento - ($cupon_descuento * Cart::instance('shopping')->subtotal()) / 100, 2) }}
+                                            ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') - $cuponFormulario['cupon_descuento'] - $puntosFormulario['puntos_dinero'] - ($cuponFormulario['cupon_descuento'] * Cart::instance('shopping')->subtotal()) / 100, 2) }}
                                         @endif
                                     @else
-                                        ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') + $costo_envio - $cupon_descuento - $puntos_descuento, 2) }}
+                                        ${{ number_format(Cart::instance('shopping')->subtotal(2, '.', '') + $costo_envio - $cuponFormulario['cupon_descuento'] - $puntosFormulario['puntos_dinero'], 2) }}
                                     @endif
                                 </div>
                             </div>

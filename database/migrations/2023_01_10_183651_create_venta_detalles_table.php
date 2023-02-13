@@ -16,16 +16,15 @@ return new class extends Migration
         Schema::create('venta_detalles', function (Blueprint $table) {
             $table->id();
             
-            $table->integer('cantidad');
-            $table->float('precio');
-            $table->json('contenido')->nullable();    
-            $table->float('descuento')->nullable();   
-
             $table->unsignedBigInteger('venta_id');
             $table->unsignedBigInteger('producto_id');
 
-            $table->foreign('venta_id')->references('id')->on('ventas');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->integer('cantidad');
+            $table->float('precio');
+            $table->json('contenido')->nullable();    
+
+            $table->foreign('venta_id')->references('id')->on('ventas')->onDelete('cascade');
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
 
             $table->timestamps();
         });

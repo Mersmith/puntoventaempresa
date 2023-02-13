@@ -17,21 +17,30 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('administrador_id')->nullable();
+            $table->unsignedBigInteger('direccion_id')->nullable();
+            $table->unsignedBigInteger('cupon_id')->nullable();
+
             $table->enum('estado', [Compra::PENDIENTE, Compra::PAGADO, Compra::ORDENADO, Compra::ENVIADO, Compra::ENTREGADO, Compra::ANULADO])->default(Compra::PENDIENTE);
             $table->float('total');
-            $table->float('impuesto');
+            $table->json('contenido')->nullable();
+            $table->float('impuesto')->nullable()->default(18);
             $table->enum('tipo_envio', [1, 2]);
             $table->json('envio')->nullable();
             $table->float('costo_envio');
-            $table->string('puntos_canjeados')->nullable();
+            $table->string('puntos_usados')->nullable();
+            $table->string('puntos_ganados')->nullable();
+            $table->string('puntos_dinero')->nullable();
+            $table->string('cupon_codigo')->nullable();
+            $table->string('cupon_tipo')->nullable();
             $table->string('cupon_descuento')->nullable();
-            $table->string('cupon_precio')->nullable();
+            $table->text('observacion')->nullable();
 
-            $table->unsignedBigInteger('cliente_id');
-            $table->unsignedBigInteger('user_id');
-
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('administrador_id')->references('id')->on('administradors');
+            $table->foreign('direccion_id')->references('id')->on('direccions')->onDelete('cascade');
+            $table->foreign('cupon_id')->references('id')->on('cupons')->onDelete('set null');
 
             $table->timestamps();
         });

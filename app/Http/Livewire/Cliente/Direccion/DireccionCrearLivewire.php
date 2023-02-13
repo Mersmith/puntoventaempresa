@@ -71,7 +71,7 @@ class DireccionCrearLivewire extends Component
 
         $direccion = new Direccion();
 
-        $direccion->user_id = auth()->user()->id;
+        $direccion->cliente_id = auth()->user()->cliente->id;
         $direccion->nombres = $this->nombres;
         $direccion->celular = $this->celular;
         $direccion->direccion = $this->direccion;
