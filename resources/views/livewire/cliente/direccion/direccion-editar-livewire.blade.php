@@ -1,12 +1,14 @@
 <div>
-    <!--SEO-->
-    @section('tituloPagina', 'EDITAR DIRECCIÓN')
 
-    <!--CONTENEDOR PAGINA PERFIL-->
-    <div class="contenedor_pagina_perfil">
+    <!--SEO-->
+    @section('tituloPagina', 'Editar dirección')
+    @section('descripcion', 'En ' . env('APP_NAME') . ' puedes editar tus direcciones de envio.')
+
+    <!--CONTENEDOR PAGINA CLIENTE-->
+    <div class="contenedor_pagina_cliente">
 
         <!--TITULO-->
-        <h2 class="cliente_paginas_titulo">EDITAR DIRECCIÓN</h2>
+        <h2 class="cliente_paginas_titulo">Editar dirección</h2>
 
         <!--CONTENEDOR BOTONES-->
         <div class="contenedor_botones_cliente">
@@ -42,9 +44,8 @@
                 </div>
             </div>
 
-            <!--DIRECCIÓN Y REFERENCIA-->
-            <div class="contenedor_2_elementos">
-                <!--DIRECCIÓN-->
+            <!--DIRECCIÓN-->
+            <div class="contenedor_1_elementos_100">
                 <div class="contenedor_elemento_item">
                     <p class="estilo_nombre_input">Dirección:
                         <span class="campo_obligatorio">(Obligatorio)</span>
@@ -54,13 +55,15 @@
                         <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
 
-                <!--REFERENCIA-->
+            <!--REFERENCIA-->
+            <div class="contenedor_1_elementos_100">
                 <div class="contenedor_elemento_item">
                     <p class="estilo_nombre_input">Referencia:
                         <span class="campo_obligatorio">(Obligatorio)</span>
                     </p>
-                    <input type="text" wire:model="referencia">
+                    <textarea rows="2" wire:model="referencia"></textarea>
                     @error('referencia')
                         <span class="campo_obligatorio">{{ $message }}</span>
                     @enderror
@@ -133,10 +136,11 @@
                 </div>
             </div>
 
-            <!--Enviar-->
+            <!--ENVIAR-->
             <div class="contenedor_1_elementos">
                 <input type="submit" value="Actualizar Dirección">
             </div>
+
         </form>
 
     </div>

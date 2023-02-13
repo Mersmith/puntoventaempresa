@@ -9,6 +9,9 @@
 <!--ELEMENTOS-->
 <link rel="stylesheet" href="{{ asset('generales/elementos.css') }}">
 
+<!--VARIABLES-->
+<link rel="stylesheet" href="{{ asset('generales/variables.css') }}">
+
 <!----------------------WEB---------------------->
 <!--MENU PRINCIPAL WEB-->
 <link rel="stylesheet" href="{{ asset('web/menu/css/menu-principal.css') }}">
@@ -36,3 +39,4 @@
 
 <!--PÁGINA FAVORITO CLIENTE-->
 <link rel="stylesheet" href="{{ asset('cliente/favorito/favorito.css') }}">
+

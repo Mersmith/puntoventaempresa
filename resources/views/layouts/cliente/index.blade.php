@@ -2,11 +2,15 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
+    <!--TITULO-->
+    <title>{{ env('APP_NAME') }} - @yield('tituloPagina')</title>
+
+    <!--META TAGS-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>@yield('tituloPagina')</title>
+    <meta name="description" content="@yield('descripcion')">
 
     <!--SCRIPTS-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -14,9 +18,11 @@
     <!--STYLES-->
     @livewireStyles
     @include('layouts.cliente.componentes.css')
+
 </head>
 
 <body class="font-sans antialiased">
+
     <!--FLASH BANNER-->
     <x-jet-banner />
 
@@ -27,6 +33,7 @@
 
         <!--MAIN PAGINA-->
         <main class="contenedor_layout_cliente">
+
             <!--MENSAJES ALERTA-->
             @if (session('crear'))
                 <div id="mensaje_alerta_crear" class="mensaje_alerta">
@@ -72,7 +79,7 @@
                     </script>
                 </div>
             @endif
-            <!--CONTENIDO PAGINA-->
+
             <div class="contenedor_centrar_pagina">
                 <div class="grid_layout_cliente">
                     <div class="contenedor_cliente_menu">
@@ -80,10 +87,12 @@
                         @include('cliente.menu.menu-principal')
                     </div>
                     <div class="contenedor_cliente_paginas">
+                        <!--CONTENENIDO DE PÁGINAS-->
                         {{ $slot }}
                     </div>
                 </div>
             </div>
+
         </main>
 
         <!--PIE PAGINA-->
@@ -91,6 +100,7 @@
 
     </div>
 
+    <!--SCRIPTS-->
     @include('layouts.cliente.componentes.js')
     @stack('modals')
     @livewireScripts
@@ -174,6 +184,7 @@
             })
         }
     </script>
+
 </body>
 
 </html>

@@ -760,3 +760,18 @@ git push origin 23_Compra_Paypal
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+php artisan make:livewire Cliente/Venta/VentaEstado
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 24_Ordenar_Codigo
+git branch
+git status
+
+git add .
+git commit -m "24_Ordenar_Codigo"
+git push origin 24_Ordenar_Codigo
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

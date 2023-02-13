@@ -2,14 +2,18 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
+    <!--TITULO-->
+    <title>{{ env('APP_NAME') }} - @yield('tituloPagina')</title>
+
+    <!--META TAGS-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Seragris - @yield('tituloPagina')</title>
     <meta name="description" content="@yield('descripcion')">
-    <!--Facebook-->
-    <meta property="og:site_name" content="Seragris">
+
+    <!--FACEBOOK-->
+    <meta property="og:site_name" content="{{ env('APP_NAME') }}">
     <meta property="og:title" content="@yield('tituloPagina')">
     <meta property="og:description" content="@yield('descripcion')">
     <meta property="og:type" content="website">
@@ -17,35 +21,41 @@
     <meta property="og:url" content="@yield('url')">
     <meta property="og:image" content="@yield('imagen')">
 
-    <!--Twitter-->
+    <!--TWITTER-->
     <meta name="twitter:title" content="@yield('tituloPagina')">
     <meta name="twitter:image" content="@yield('imagen')">
-    <!-- Scripts -->
+
+    <!--SCRIPTS-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Styles -->
+    <!--STYLES-->
     @livewireStyles
     @include('layouts.web.componentes.css')
+
 </head>
 
 <body class="font-sans antialiased">
-    {{-- Sirve para crear los flash.banner --}}
+
+    <!--FLASH BANNER-->
     <x-jet-banner />
 
     <div class="min-h-screen">
 
-        <!-- Menu Principal-->
+        <!--MENU PRINCIPAL WEB-->
         @livewire('web.menu.menu-principal')
 
-        <!-- Contenido de páginas-->
+        <!--MAIN PAGINA-->
         <main>
+            <!--CONTENENIDO DE PÁGINAS-->
             {{ $slot }}
         </main>
-        
-        <!-- Pie de pagina-->
+
+        <!--PIE DE PÁGINA-->
         @include('layouts.web.componentes.pie-pagina')
+
     </div>
 
+    <!--SCRIPTS-->
     @include('layouts.web.componentes.js')
     @stack('modals')
     @livewireScripts
@@ -88,6 +98,7 @@
             })
         })
     </script>
+
 </body>
 
 </html>

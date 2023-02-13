@@ -171,7 +171,7 @@
                                     {{ $ordenItem->total }} USD
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm cursor-pointer">
-                                    <a href="{{ route('administrador.ordenes.editar', $ordenItem) }}">
+                                    <a href="{{ route('administrador.venta.editar', $ordenItem) }}">
                                         <span><i class="fa-solid fa-pencil" style="color: green;"></i></span>
                                         Ver</a>
                                 </td>

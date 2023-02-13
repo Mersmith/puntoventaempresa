@@ -2,66 +2,15 @@
     @section('tituloPagina', 'Pagar Mi Orden | N° 00000-' . $venta->id)
 
     <div class="contenedor_pagina_carrito">
-        <!--Estado producto-->
-        <div class="contenedor_estado_producto">
-            <div style="text-align: center">
-                <h1 style="margin-bottom: 5px;">Orden: N° 00000-{{ $venta->id }} </h1>                
-            </div>
-            <br>
-            <div class="flex items-center">
-                <!--Recibido-->
-                <div class="relative">
-                    <div
-                        class="{{ !$venta->estado == 1 || $venta->estado >= 2 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
-                        <i class="fa-solid fa-dollar-sign text-white"></i>
-                    </div>
-                    <div class="absolute -left-1.5 mt-0.5">
-                        <p>Pagado</p>
-                    </div>
-                </div>
-                <div
-                    class="{{ $venta->estado >= 2 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
-                </div>
-                <!--Ordenado-->
-                <div class="relative">
-                    <div
-                        class="{{ $venta->estado >= 2 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-11 w-11 flex items-center justify-center">
-                        <i class="fa-solid fa-list-check  text-white"></i>
-                    </div>
-                    <div class="absolute -left-1.5 mt-0.5">
-                        <p>Alistado</p>
-                    </div>
-                </div>
-                <div
-                    class="{{ $venta->estado >= 3 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
-                </div>
-                <!--Enviado-->
-                <div class="relative">
-                    <div
-                        class="{{ $venta->estado >= 3 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
-                        <i class="fas fa-truck text-white"></i>
-                    </div>
-                    <div class="absolute -left-1 mt-0.5">
-                        <p>Enviado</p>
-                    </div>
-                </div>
-                <div
-                    class="{{ $venta->estado >= 4 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} h-1 flex-1 mx-2">
-                </div>
-                <!--Entregado-->
-                <div class="relative">
-                    <div
-                        class="{{ $venta->estado >= 4 && $venta->estado != 5 ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-11 w-11 flex items-center justify-center">
-                        <i class="fa-solid fa-box-open text-white"></i>
-                    </div>
-                    <div class="absolute -left-2 mt-0.5">
-                        <p>Entregado</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!--Resumen producto-->
         <div class="contenedor_centrar_pagina">
+
+            <!--CONTENEDOR ESTADO VENTA-->
+            <div class="contenedor_estado_venta">
+                @livewire('cliente.venta.venta-estado', ['ventaEstado' => $venta], key('venta-pagar-' . $venta->id))
+            </div>
+
             <!--Carrito-->
             <div class="grid_carrito_compras">
                 <!--Carrito-->
@@ -214,20 +163,21 @@
                             foreach ($productosCarrito as $producto) {
                                 $totalPuntosProducto += $producto->options->puntos_ganar * $producto->qty;
                             }
-                            
+
                         @endphp
                         @if ($venta->puntos_usados <= $puntos_cliente)
                             @if ($venta->puntos_usados)
                                 <div class="contenedor_pago">
                                     <div>Puntos: <code>Estas ganando {{ $totalPuntosProducto }} puntos</code></div>
-                                    <div style="
+                                    <div
+                                        style="
                                     text-align: end;
                                 ">
                                         <span>
                                             -${{ number_format($venta->puntos_usados * config('services.crd.puntos'), 2) }}
                                         </span>
                                         <br>
-                                        <span>{{$venta->puntos_usados}} puntos</span>
+                                        <span>{{ $venta->puntos_usados }} puntos</span>
                                     </div>
                                 </div>
                                 <hr>
@@ -246,7 +196,8 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="contenedor_boton_pagar">                          
+                        <p>{{$venta->estado}}</p>
+                        <div class="contenedor_boton_pagar">
                             <div id="paypal-button-container"></div>
                         </div>
                     </div>
@@ -254,7 +205,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- SDK Paypal --}}
     <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}"></script>
     <script>
@@ -288,4 +239,5 @@
             }
         }).render('#paypal-button-container');
     </script>
+
 </div>

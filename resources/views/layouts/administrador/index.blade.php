@@ -2,32 +2,38 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
+    <!--TITULO-->
+    <title>{{ env('APP_NAME') }} - @yield('tituloPagina')</title>
+
+    <!--META TAGS-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="@yield('descripcion')">
 
-    <title>@yield('tituloPagina')</title>
-
-    <!-- Scripts -->
+    <!--SCRIPTS-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Styles -->
+    <!--STYLES-->
     @livewireStyles
     @include('layouts.administrador.componentes.css')
+
 </head>
 
 <body class="font-sans antialiased">
-    {{-- Sirve para crear los flash.banner --}}
+
+    <!--FLASH BANNER-->
     <x-jet-banner />
 
     <div class="min-h-screen">
 
-        <!-- Menu Administración -->
+        <!--MENU PRINCIPAL ADMINISTRADOR-->
         @livewire('administrador.menu.menu-principal')
 
-        <!-- Contenido de páginas -->
+        <!--MAIN PAGINA-->
         <main class="contenedor_layout_administrador">
-            <!--Mensaje alerta-->
+
             @if (session('crear'))
                 <div id="mensaje_alerta_crear" class="mensaje_alerta">
                     <p>{{ session('crear') }}</p>
@@ -61,7 +67,6 @@
                     </script>
                 </div>
             @endif
-
             @if (session('error'))
                 <div class="mensaje_alerta">
                     <p>{{ session('error') }}</p>
@@ -73,8 +78,11 @@
                     </script>
                 </div>
             @endif
+
+            <!--CONTENENIDO DE PÁGINAS-->
             {{ $slot }}
 
+            <!--BOTONES SCROLL-->
             <button onClick="window.scrollTo(0, 0);" class="contenedor_boton_scroll_top">
                 <i class="fa-solid fa-arrow-up"></i>
             </button>
@@ -82,9 +90,12 @@
             <button onClick="window.scrollTo(0, document.body.scrollHeight);" class="contenedor_boton_scroll_abajo">
                 <i class="fa-solid fa-arrow-down"></i>
             </button>
+
         </main>
+
     </div>
 
+    <!--SCRIPTS-->
     @include('layouts.administrador.componentes.js')
     @stack('modals')
     @livewireScripts
@@ -168,6 +179,7 @@
             })
         }
     </script>
+
 </body>
 
 </html>
