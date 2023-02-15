@@ -2,9 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Imagen;
+use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Subcategoria;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -53,4 +56,41 @@ class ProductoFactory extends Factory
             'visitas' => $this->faker->randomNumber(),
         ];
     }
+
+    /*public function configure()
+    {
+        return $this->afterCreating(function (Producto $producto) {
+            for ($i = 0; $i < rand(1, 3); $i++) {
+                $imagen = new Imagen();
+                $imagen->imagen_ruta = $this->faker->imageUrl(640, 480, 'food');
+                $producto->imagenes()->save($imagen);
+
+                $fileContents = file_get_contents($imagen->imagen_ruta);
+                $fileName = 'producto-' . $producto->id . '-imagen-' . $imagen->id . '.jpg';
+                Storage::disk('public')->put('productos/' . $fileName, $fileContents);
+            }
+        });
+    }
+
+    public function configure()
+    {
+        $this->define(Imagen::class, function ($faker) {
+            $imagen = new Imagen();
+            $imagen->imagen_ruta = 'images/productos/' . Str::random(10) . '.jpg'; // Establecer la ruta de la carpeta de almacenamiento local
+            $imagen->save();
+
+            $fileContents = file_get_contents($faker->imageUrl(640, 480, 'food'));
+            Storage::disk('public')->put($imagen->imagen_ruta, $fileContents);
+
+            return $imagen;
+        });
+    }
+
+    public function afterCreating(Producto $producto)
+    {
+        $cantidad_imagenes = rand(1, 5);
+        for ($i = 0; $i < $cantidad_imagenes; $i++) {
+            $producto->imagenes()->save(Imagen::factory()->make());
+        }
+    }*/
 }

@@ -795,3 +795,16 @@ git push origin 25_Ordenar_Codigo_2
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 25_Ordenar_Codigo_3
+git branch
+git status
+
+git add .
+git commit -m "25_Ordenar_Codigo_3"
+git push origin 25_Ordenar_Codigo_3
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
