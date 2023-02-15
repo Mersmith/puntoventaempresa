@@ -110,7 +110,7 @@ class ClienteCrearLivewire extends Component
 
         $this->emit('mensajeCreado', "Creado.");
 
-        return redirect()->route('administrador.cliente.editar', $usuario);
+        return redirect()->route('administrador.cliente.index');
     }
 
     public function render()

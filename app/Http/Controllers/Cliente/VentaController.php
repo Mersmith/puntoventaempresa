@@ -52,6 +52,17 @@ class VentaController extends Controller
         $this->authorize('clienteComprador', $venta);
         $this->authorize('clientePagador', $venta);
 
+        // Obtener arreglo de eventos actual
+        $eventos_actuales = json_decode($venta->eventos, true);
+
+        // Crear nuevo evento y agregar al arreglo de eventos
+        $evento_nuevo = ['fecha' => now()->toDateTimeString(), 'estado' => 'PAGADO'];
+        $eventos_actuales[] = $evento_nuevo;
+
+        // Convertir el arreglo de eventos a formato JSON
+        $eventos_json = json_encode($eventos_actuales);
+
+        $venta->eventos = $eventos_json;
         $venta->estado = 2;
         $venta->save();
         return redirect()->route('cliente.venta.mostrar', $venta);

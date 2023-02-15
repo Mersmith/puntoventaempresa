@@ -1,16 +1,19 @@
 <div>
+
     <!--SEO-->
     @section('tituloPagina', 'Marcas')
 
     <!--CONTENEDOR CABECERA-->
     <div class="contenedor_administrador_cabecera">
+
         <!--CONTENEDOR TITULO-->
         <div class="contenedor_titulo_admin">
             <h2>Marcas</h2>
         </div>
+
     </div>
 
-    <!--CONTENEDOR CONTENIDO-->
+    <!--CONTENEDOR ADMINISTRADOR PÁGINA-->
     <div class="contenedor_administrador_contenido" x-data>
         <!--FORMULARIOS-->
         <div class="contenedor_panel_producto_admin">
@@ -176,9 +179,9 @@
         </div>
     </div>
 
-
+    <!--MODAL-->
     @if ($marca)
-        <!--MODAL-->
+        <!--CONTENEDOR MODAL-->
         <x-jet-dialog-modal wire:model="editarFormulario.abierto">
             <!--TITULO-->
             <x-slot name="title">
@@ -231,6 +234,7 @@
                             @enderror
                         </div>
                     </div>
+
                     <!--NOMBRE-->
                     <div class="contenedor_1_elementos_100">
                         <div class="contenedor_elemento_item">
@@ -280,6 +284,7 @@
             </x-slot>
         </x-jet-dialog-modal>
     @endif
+
 </div>
 
 <!--SCRIPT-->

@@ -64,5 +64,5 @@
 <!--PÁGINA ORDEN ADMINISTRADOR-->
 <link rel="stylesheet" href="{{ asset('administrador/orden/orden.css') }}">
 
-<!--PÁGINA ORDEN ADMINISTRADOR-->
+<!--ESTADO VENTA ADMINISTRADOR-->
 <link rel="stylesheet" href="{{ asset('administrador/orden/componente-estado-orden.css') }}">

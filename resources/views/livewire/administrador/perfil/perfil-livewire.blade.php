@@ -1,15 +1,19 @@
 <div>
+
     <!--SEO-->
     @section('tituloPagina', 'PERFIL')
 
     <!--CONTENEDOR CABECERA-->
     <div class="contenedor_administrador_cabecera">
+
         <!--CONTENEDOR TITULO-->
         <div class="contenedor_titulo_admin">
             <h2>Perfil</h2>
         </div>
+
     </div>
 
+    <!--CONTENEDOR ADMINISTRADOR PÁGINA-->
     <div class="contenedor_administrador_contenido">
         <!--FORMULARIO-->
         <div x-data class="formulario">
@@ -100,8 +104,10 @@
             </div>
         </div>
     </div>
+
 </div>
 
+<!--SCRIPT-->
 @push('script')
     <script>
         Livewire.on('eliminarAdministradorModal', () => {

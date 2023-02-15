@@ -1,15 +1,19 @@
 <div>
+
     <!--SEO-->
     @section('tituloPagina', 'Colores')
 
     <!--CONTENEDOR CABECERA-->
     <div class="contenedor_administrador_cabecera">
+
         <!--CONTENEDOR TITULO-->
         <div class="contenedor_titulo_admin">
             <h2>Colores</h2>
         </div>
+
     </div>
 
+    <!--CONTENEDOR ADMINISTRADOR PÁGINA-->
     <div class="contenedor_administrador_contenido">
         <!--FORMULARIOS-->
         <div class="contenedor_panel_producto_admin">
