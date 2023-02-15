@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="estado_orden_linea"
-            style="background-color: {{ $this->ventaEstado->estado >= 5 && $this->ventaEstado->estado != 6 ? 'var(--color-fondo-secundario-boton)' : 'var(--color-fondo-terciario-boton)' }}">
+            style="background-color: {{ $this->ventaEstado->estado >= 5 && $this->ventaEstado->estado != 6 ? 'var(--color-fondo-terciario-boton)' : 'var(--color-fondo-terciario-boton)' }}">
         </div>
         <!--Entregado-->
         <div class="estado_orden_icono_texto">
@@ -83,7 +83,8 @@
         <button class="contenedor_estado_orden_venta_boton orden_boton_actualizar" wire:click="actualizarEstadoVenta"
             wire:loading.attr="disabled" wire:target="actualizarEstadoVenta">
             @if ($ventaEstado->estado == 1)
-                <span> ¿Cancelar compra?</span>
+                <span>
+                    ¿Cancelar compra?</span>
             @elseif($ventaEstado->estado == 5)
                 <span> ¿Habilitar compra?</span>
             @endif

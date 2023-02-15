@@ -196,7 +196,6 @@
                                 @endif
                             </div>
                         </div>
-                        <p>{{$venta->estado}}</p>
                         <div class="contenedor_boton_pagar">
                             <div id="paypal-button-container"></div>
                         </div>

@@ -26,6 +26,11 @@ class Venta extends Model
         return $this->belongsTo(Direccion::class, 'direccion_id', 'id');
     }
 
+    public function direccion_empresa()
+    {
+        return $this->belongsTo(DireccionEmpresa::class, 'direccion_empresa_id', 'id');
+    }
+
     public function cupon()
     {
         return $this->belongsTo(Cupon::class);

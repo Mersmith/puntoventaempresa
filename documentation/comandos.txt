@@ -581,6 +581,7 @@ php artisan make:model Departamento -m
 php artisan make:model Provincia -m
 php artisan make:model Distrito -m
 php artisan make:model Direccion -msf
+php artisan make:model DireccionEmpresa -msf
 
 
 ->Copiar de ubigeo.sql las 24 departamentos, 194 provincias y 1830 distritos
@@ -588,6 +589,10 @@ php artisan make:model Direccion -msf
 php artisan make:livewire Cliente/Direccion/DireccionTodoLivewire
 php artisan make:livewire Cliente/Direccion/DireccionCrearLivewire
 php artisan make:livewire Cliente/Direccion/DireccionEditarLivewire
+
+php artisan make:livewire Cliente/DireccionEmpresa/DireccionEmpresaTodoLivewire
+php artisan make:livewire Cliente/DireccionEmpresa/DireccionEmpresaCrearLivewire
+php artisan make:livewire Cliente/DireccionEmpresa/DireccionEmpresaEditarLivewire
 
 php artisan make:controller Cliente/PerfilController
 
@@ -762,6 +767,7 @@ git push origin 23_Compra_Paypal
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 php artisan make:livewire Cliente/Venta/VentaEstado
+php artisan make:livewire Administrador/Venta/VentaEstado
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -772,6 +778,20 @@ git status
 git add .
 git commit -m "24_Ordenar_Codigo"
 git push origin 24_Ordenar_Codigo
+->Click en boton Merge pull request
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+git checkout -b 25_Ordenar_Codigo_2
+git branch
+git status
+
+git add .
+git commit -m "25_Ordenar_Codigo_2"
+git push origin 25_Ordenar_Codigo_2
 ->Click en boton Merge pull request
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

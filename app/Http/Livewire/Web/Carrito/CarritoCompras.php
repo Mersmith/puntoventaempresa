@@ -176,9 +176,24 @@ class CarritoCompras extends Component
             ]);
             $envio = $envioJson;
             $direccion_id = $this->direccion_principal->id;
+        } elseif ($this->tipo_envio == 3) {
+            $envioJson = json_encode([
+                'departamento' => $this->direccion_principal->departamento_nombre,
+                'provincia' => $this->direccion_principal->provincia_nombre,
+                'distrito' => $this->direccion_principal->distrito_nombre,
+                'direccion' => $this->direccion_principal->direccion,
+                'referencia' => $this->direccion_principal->referencia,
+            ]);
+            $envio = $envioJson;
+            $direccion_id = $this->direccion_principal->id;
         } else {
             $precio_envio = 0;
         }
+
+        $eventos = [
+            ['fecha' => now()->toDateTimeString(), 'estado' => 'PENDIENTE']
+        ];
+
 
         // Inicio de la transacción
         DB::beginTransaction();
@@ -197,6 +212,7 @@ class CarritoCompras extends Component
                 'puntos_ganados' => $totalPuntosProducto,
                 'puntos_dinero' => $this->puntosFormulario['puntos_dinero'],
                 'observacion' => $this->observacion_envio,
+                'eventos' => json_encode($eventos),
             ]);
 
             // Verificación de cupón y asignación a la venta

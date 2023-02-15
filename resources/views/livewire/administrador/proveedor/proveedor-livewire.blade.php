@@ -1,15 +1,19 @@
 <div>
+
     <!--SEO-->
     @section('tituloPagina', 'Proveedores')
 
     <!--CONTENEDOR CABECERA-->
     <div class="contenedor_administrador_cabecera">
+
         <!--CONTENEDOR TITULO-->
         <div class="contenedor_titulo_admin">
             <h2>Proveedores</h2>
         </div>
+
     </div>
 
+    <!--CONTENEDOR ADMINISTRADOR PÁGINA-->
     <div class="contenedor_administrador_contenido">
         <!--FORMULARIOS-->
         <div class="contenedor_panel_producto_admin">
@@ -164,8 +168,9 @@
         </div>
     </div>
 
+    <!--MODAL-->
     @if ($proveedor)
-        <!--MODAL-->
+        <!--CONTENEDOR MODAL-->
         <x-jet-dialog-modal wire:model="editarFormulario.abierto">
             <!--TITULO-->
             <x-slot name="title">
@@ -261,6 +266,7 @@
             </x-slot>
         </x-jet-dialog-modal>
     @endif
+
 </div>
 
 <!--SCRIPT-->

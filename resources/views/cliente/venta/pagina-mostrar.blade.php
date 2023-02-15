@@ -1,5 +1,6 @@
 <x-web-layout>
-    <div>
+
+    <div class="centrar_orden_compra">
         @section('tituloPagina', 'Orden | N° 00000-' . $venta->id)
         @php
             $envio = json_decode($venta->envio);
